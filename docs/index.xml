@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
     <title>Docs on My New Hugo Site</title>
-    <link>/docs/</link>
+    <link>https://alexserra98.github.io/alexserra98/docs/</link>
     <description>Recent content in Docs on My New Hugo Site</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 04 Aug 2023 11:42:13 +0200</lastBuildDate><atom:link href="/docs/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 04 Aug 2023 11:42:13 +0200</lastBuildDate><atom:link href="https://alexserra98.github.io/alexserra98/docs/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Test</title>
-      <link>/docs/test/</link>
+      <link>https://alexserra98.github.io/alexserra98/docs/test/</link>
       <pubDate>Fri, 04 Aug 2023 11:42:13 +0200</pubDate>
       
-      <guid>/docs/test/</guid>
+      <guid>https://alexserra98.github.io/alexserra98/docs/test/</guid>
       <description>Test Test</description>
     </item>
     
