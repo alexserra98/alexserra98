@@ -40,11 +40,7 @@
 
 
 ## Github Stats  
-<div align="center"><img src="https://github-readme-stats.vercel.app/api?username=alexserra98&show_icons=true&count_private=true&hide_border=true" align="center" /></div>  
-
-<br/>  
-
-<div align="center"><img src="https://rishavanand.github.io/static/images/spotify-readme-example.svg" /></div>
+<div align="center"><img src="https://github-readme-stats.vercel.app/api?username=alexserra98&show_icons=true&count_private=true&hide_border=true" align="center" /></div>
 <br />
 
 ----
