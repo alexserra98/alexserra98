@@ -2,7 +2,7 @@
 title: "Advanced Topics in Machine Learning - Notes"
 date: 2023-09-18T11:30:03+00:00
 weight: 1
-math: katex
+math: true
 ---
 
 This is the first of a series of posts that collects notes from the course [advaced topics in machine learning]("https://dssc.units.it/advanced-topics-machine-learning"). If you find any mistakes or I've forgotten to cite you feel free to reach out!
