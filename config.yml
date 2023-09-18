@@ -81,7 +81,7 @@ params:
     profileMode:
         enabled: true
         title: Alex's Log
-        subtitle: "Hi this is Alex 👋, I'm master student in Data Science and Scientific Computing at University of Trieste"
+        subtitle: "Hi this is Alex 👋, I'm a grad student in Data Science and Scientific Computing at University of Trieste"
         imageUrl: "images/blog.png"
         imageTitle: my image
         imageWidth: 250

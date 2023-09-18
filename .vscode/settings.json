@@ -1,0 +1,4 @@
+// settings.json
+{
+    "grammarly.files.include": ["**/content/posts/ANN.md"]
+    }
