@@ -2,7 +2,7 @@
 title: "Advanced Topics in Machine Learning - Notes"
 date: 2023-09-18T11:30:03+00:00
 weight: 1
-math: true
+mathjax: true
 ---
 
 This is the first of a series of posts that collects notes from the course [advaced topics in machine learning]("https://dssc.units.it/advanced-topics-machine-learning"). If you find any mistakes or I've forgotten to cite you feel free to reach out!
@@ -13,20 +13,21 @@ Shallow learning (using kernel):
 - the model is $f(x) = \langle w , \phi(x) \rangle$
 
 Deep learning (using neural network):
-- the feature map is **compositional** 
-
-$\phi(x)_{L} = \phi\_{L} \circ \phi\{L-1} \circ ... \circ \phi_{1}(x)$
-
+- the feature map is **compositional** $\phi(x)\_{L} = \phi\_{L} \circ \phi\{L-1} \circ ... \circ \phi_{1}(x)$
 and it is **learned**
 - the model is $f(x) = \langle w , \phi(x)_{L} \rangle$
 
 The link between the two models is *Neural Tangent Kernel* (NTK), the mathematical details can be found at [ntk](https://lilianweng.github.io/posts/2022-09-08-ntk/), here we limit to provide the intuition behind it. <br>
-The empirical loss function of a neural network $
+The empirical loss function of a neural network 
+$
 \mathcal{L}: \mathbb{R}^P \rightarrow \mathbb{R}_{+}
-$ is defined as follow, using a per-sample cost function $\ell: \mathbb{R}^{n_0} \times \mathbb{R}^{n_L} \rightarrow \mathbb{R}_{+}$ :
+$ is defined as follow, using a per-sample cost function 
+
+$\ell: \mathbb{R}^{n\_0} \times \mathbb{R}^{n\_L} \rightarrow \mathbb{R}\_{+}$ :
 $$
 \mathcal{L}(\theta)=\frac{1}{N} \sum_{i=1}^N \ell\left(f\left(\mathbf{x}^{(i)} ; \theta\right), y^{(i)}\right)
-$$, where $\theta$ is the parameter of the neural network, $f(x; \theta)$ is the output of the neural network, $\ell$ is the loss function, $x_{i}$ is the input and $y_{i}$ is the target
+$$,
+where $\theta$ is the parameter of the neural network, $f(x; \theta)$ is the output of the neural network, $\ell$ is the loss function, $x_{i}$ is the input and $y_{i}$ is the target
 using the chain rule the gradient is 
 $$
 \nabla_\theta \mathcal{L}(\theta)=\frac{1}{N} \sum_{i=1}^N \underbrace{\nabla_\theta f\left(\mathbf{x}^{(i)} ; \theta\right)}_{\text {size } P \times n_L} \underbrace{\nabla_f \ell\left(f, y^{(i)}\right)}_{\text {size } n_L \times 1}
@@ -59,9 +60,9 @@ $$
 and then we can perform the following analysis:
 $$
 \begin{aligned}
-\theta(t)-\theta(0) & =-\eta \nabla_\theta \mathcal{L}(\theta)=-\eta \nabla_\theta f(\theta)^{\top} \nabla_f \mathcal{L} \\
-f^{\operatorname{lin}}(\theta(t))-f(\theta(0)) & =-\eta \nabla_\theta f(\theta(0))^{\top} \nabla_\theta f(\mathcal{X} ; \theta(0)) \nabla_f \mathcal{L} \\
-\frac{d f(\theta(t))}{d t} & =-\eta K(\theta(0)) \nabla_f \mathcal{L} \\
+\theta(t)-\theta(0) & =-\eta \nabla_\theta \mathcal{L}(\theta)=-\eta \nabla_\theta f(\theta)^{\top} \nabla_f \mathcal{L} \\\
+f^{\operatorname{lin}}(\theta(t))-f(\theta(0)) & =-\eta \nabla_\theta f(\theta(0))^{\top} \nabla_\theta f(\mathcal{X} ; \theta(0)) \nabla_f \mathcal{L} \\\
+\frac{d f(\theta(t))}{d t} & =-\eta K(\theta(0)) \nabla_f \mathcal{L} \\\
 \frac{d f(\theta(t))}{d t} & =-\eta K_{\infty} \nabla_f \mathcal{L}
 \end{aligned}
 $$
@@ -211,9 +212,9 @@ $$
 $$
 If we train our model with this setting and using *gradient descent* what we observe is that if we take infinitely small stepsize, and with additional conditions the result to which the algorithm converges is the minimum nuclear norm solution. Besides if the data come from low-rank matrices the model achieves good generalization ability <br>
 There's a conjecture associated to this problem:
-> With $U(0) \rightarrow 0$, the flow $\dot{U} = - \nabla \| A(UU^{T}) -y \|^{2}$ converge to the minimum nuclear norm solution.:
+> With $U(0) \rightarrow 0$, the flow $\dot{U} = - \nabla \| A(UU^{T}) -y \|^{2}$ converge to the minimum nuclear norm solution:
 $$
-U(\infty) U(\infty)^{\top} \rightarrow \min _{W \geqslant 0}\|W\|_* \text { s.t. }\left\langle A_i, W\right\rangle=y_i
+U(\infty) U(\infty)^{\top} \rightarrow \min \_{W \geqslant 0}\|W\|_* \text { s.t. }\left\langle A_i, W\right\rangle=y_i
 $$
 [paper](https://papers.nips.cc/paper_files/paper/2017/hash/58191d2a914c6dae66371c9dcdc91b41-Abstract.html)
 
@@ -227,16 +228,16 @@ Ax = b
 $$
 where $A$ has full row rank. Let the singular value decomposition ( SVD) of $A$ be as follows: 
 $$
-\mathrm{A}=\mathrm{U} \Sigma \mathrm{V}^{\top}=\mathrm{U}\left[\begin{array}{ll}
-\Sigma_1 & \mathrm{O}
+A=U \Sigma V^{\top}=U\left[\begin{array}{ll}\
+\Sigma_1 & O
 \end{array}\right]\left[\begin{array}{c}
-\mathrm{V}_1^{\top} \\
-\mathrm{V}_2^{\top}
-\end{array}\right]=\mathrm{U} \Sigma_1 \mathrm{~V}_1^{\top}
+V_1^{\top} \\\
+V_2^{\top}
+\end{array}\right]=U \Sigma_1 ~V_1^{\top}
 $$
 The **least-norm** solution of $Ax = b$ is given by:
 $$
-\mathrm{x}_{\mathrm{LN}}:=\mathrm{A}^{\top}\left(\mathrm{AA}^{\top}\right)^{-1} \mathrm{~b}=\cdots=\mathrm{V}_1 \Sigma_1^{-1} \mathrm{U}^{\top} \mathrm{b}
+\mathrm{x}\_{\mathrm{LN}}:=\mathrm{A}^{\top}\left(\mathrm{AA}^{\top}\right)^{-1} \mathrm{~b}=\cdots=\mathrm{V}_1 \Sigma_1^{-1} \mathrm{U}^{\top} \mathrm{b}
 $$
 where the inverse of $\mathbf{A A}^{\top}$ exists because of $A$ has full row rank. <br>
 
@@ -251,13 +252,13 @@ $$
 Using gradient descent with steps $\mu > 0$,
 $$
 \begin{aligned}
-\mathrm{x}_{k+1} & =\mathrm{x}_k-\mu \nabla f\left(\mathrm{x}_k\right) \\
-& =\left(\mathrm{I}-\mu \mathrm{A}^{\top} \mathrm{A}\right) \mathrm{x}_k+\mu \mathrm{A}^{\top} \mathrm{b}
+\mathrm{x}\_{k+1} & =\mathrm{x}\_k-\mu \nabla f\left(\mathrm{x}\_k\right) \\\
+& =\left(\mathrm{I}-\mu \mathrm{A}^{\top} \mathrm{A}\right) \mathrm{x\}\_k+\mu \mathrm{A}^{\top} \mathrm{b}
 \end{aligned}
 $$
 Hence,
 $$
-\mathrm{x}_k=\left(\mathrm{I}-\mu \mathrm{A}^{\top} \mathrm{A}\right)^k \mathrm{x}_0+\mu \sum_{\ell=0}^{k-1}\left(\mathrm{I}-\mu \mathrm{A}^{\top} \mathrm{A}\right)^{\ell} \mathrm{A}^{\top} \mathrm{b}
+\mathrm{x}\_k=\left(\mathrm{I}-\mu \mathrm{A}^{\top} \mathrm{A}\right)^k \mathrm{x}\_0+\mu \sum_{\ell=0}^{k-1}\left(\mathrm{I}-\mu \mathrm{A}^{\top} \mathrm{A}\right)^{\ell} \mathrm{A}^{\top} \mathrm{b}
 $$
 Letting 
 $$
@@ -325,7 +326,7 @@ We can see then that *early stopping* can be interpreted as an hyperparameters s
 
 It has been shown that *early stopping* restricts the optimization procedure to a relatively smaller volume of parameters in the space of the initial parameter value, this is indeed the **regularization effect** of this strategy. <br>
 We can actually push our analysis further and show that in the simple setting of quadratic approximation of the loss this technique is equivalent to L2 regularization. <br>
-Let's start by approximating the cost function $J$ in the neighborhood of the optimal solution $w^*$ as we did in *weight decay*:
+Let's start by approximating the cost function $J$ in the neighborhood of the optimal solution $w^\*$ as we did in *weight decay*:
 $$
 \hat{J}(\boldsymbol{\theta})=J\left(\boldsymbol{w}^*\right)+{ }_2^1\left(\boldsymbol{w}-\boldsymbol{w}^*\right)^{\top} \boldsymbol{H}\left(\boldsymbol{w}-\boldsymbol{w}^*\right)
 $$
@@ -401,7 +402,7 @@ $$
 \dot{\omega}=f(\omega)
 \end{gathered}
 $$
-![step_off](/posts/first_post/images/step_off.png) <br>
+![step_off](images/step_off.png  "prova") <br>
 <br>
 If we follow the steps of Euler update we can see that this approximation scheme introduces a bias at each step and soon the trajectory of the discrete updates will step off from the actual solution.
 <br> 
@@ -424,12 +425,12 @@ $$
 2. Then we send $n \rightarrow \infty$ and set $\alpha=\epsilon / n$, to obtain the solution of the continuous flow:
 $$
 \begin{aligned}
-\omega(t+\epsilon) & =\omega(t)+\epsilon \tilde{f}(\omega(t))+\left(\epsilon^2 / 2\right) \nabla \tilde{f}(\omega(t)) \tilde{f}(\omega(t))+O\left(\epsilon^3\right) \\
-& =\underbrace{\omega(t)+\epsilon f(\omega(t))}_{\text {Euler step }}+\epsilon^2(\underbrace{\left.f_1(\omega(t))+(1 / 2) \nabla f(\omega(t)) f(\omega(t))\right)}_{\begin{array}{c}
-\text { Set higher order } \\
+\omega(t+\epsilon) & =\omega(t)+\epsilon \tilde{f}(\omega(t))+\left(\epsilon^2 / 2 \right) \nabla \tilde{f}(\omega(t)) \tilde{f}(\omega(t))+O(\epsilon^3) \\\
+\& =\underbrace{\omega(t)+\epsilon f(\omega(t))}\_{\text {Euler step }}+\epsilon^2(\underbrace{.f_1(\omega(t))+(1 / 2) \nabla f(\omega(t)) f(\omega(t))})\_{\begin{array}{c}
+\text { Set higher order } \\\
 \text { terms to zero }
-\end{array}}+O\left(\epsilon^3\right) .
-\end{aligned} .
+\end{array}}+O(\epsilon^3) 
+\end{aligned} 
 $$
 We want the expression of $\omega(t+\epsilon)$ equal to the expression of the Euler step (the purpose of this ancillary flow is to stay close to the solution obtained with the Euler updates) and thus we have to set higher order terms to 0. Thus we can now come up with an expression of the first correction term
 $$
@@ -458,8 +459,8 @@ Putting everything together we have that for a finite small learning rate:
 
 $$
 \begin{aligned}
-& \dot{\omega}=-\nabla \widetilde{C}_{G D}(\omega)+O\left(\epsilon^2\right) \\
-& \widetilde{C}_{G D}(\omega)=\underbrace{C(\omega)}_{\text{Original Loss}}+\underbrace{(\epsilon / 4)\|\nabla C(\omega)\|^2}_{Regularization}
+& \dot{\omega}=-\nabla \widetilde{C}\_{G D}(\omega)+O\left(\epsilon^2\right) \\\
+& \widetilde{C}\_{G D}(\omega)=\underbrace{C(\omega)}\_{\text{Original Loss}}+\underbrace{(\epsilon / 4)\|\nabla C(\omega)\|^2}\_{Regularization}
 \end{aligned}
 $$
 We provide an informal intution on why this is happening:
@@ -479,11 +480,11 @@ We now want to rewrite the SGD update rule taking into account random shuffling 
 $N$ is the number of samples, $B$ size of the batch, $m = \frac{N}{B}$
 is the number of updates per epoch, we define the loss over a mini-batch:
 $$
-\hat{C}_i=(1 / B) \sum_{j=i B+1}^{(i+1) B} C_j(\omega)
+\hat{C}\_i=(1 / B) \sum\_{j=i B+1}^{(i+1) B} C\_j(\omega)
 $$
 and get the following update rule:
 $$
-\omega_{i+1}=\omega_i-\epsilon \nabla \hat{C}_{i \% m}(\omega)
+\omega\_{i+1}=\omega\_i-\epsilon \nabla \hat{C}\_{i \mbox{mod} m}(\omega)
 $$
 (with a shuffle every $\mathrm{m}$ updates) <br>
 The module operation at the index is just to enforce that every example appears exactly once per epoch (no overlap between batches).
@@ -587,21 +588,25 @@ $$
 \epsilon = \alpha n
 $$
 and set the stochasticity,  $\alpha$ set the discretization error cause it encodes the step size of the Euler method. As $n \rightarrow \infty$ $\alpha \rightarrow 0$ thus the discretization error  vanish <br>
+<!---
 ADD PLOT
-what we see now is that Lare bare learning rates \alpha are actually beneficial for the optimization procedure, implying that **discretization error** is beneficial, whilist smaller value of n achieves higher accuracy implying that **stochasticity is detrimental**
-(not very clear!! revise) <br>
+--->what we see now is that Lare bare learning rates \alpha are actually beneficial for the optimization procedure, implying that **discretization error** is beneficial, whilist smaller value of n achieves higher accuracy implying that **stochasticity is detrimental**
+<!---
+(not very clear!! revise)
+--->
+ <br>
 <br>
 <br>
 
 **Closing Remarks on gradient descent**
-![sgd1](robust-sgd0.png) <br>
+![sgd1](images/robust-sgd0.png) <br>
 <br>
 The goal of an optimization algorithm is to converge to *good* minima that behaves well in terms of:
 - robustness
 - generalization
 
 Both the train-set and test-set are sampled from the same distribution, and for this reason, we expect the train loss function to be very close to the test loss function. What we want is to find a shape of the loss that is robust to small perturbations (that comes from training different samples but from the same distribution). There's an ongoing debate regarding the geometry of these shapes, but a generally accepted idea is that a function with a *flat* minima can provide robustness and generalization.  <br>
-![sgd2](robust-sgd.png) <br>
+![sgd2](images/robust-sgd.png) <br>
 <br>
 <!---
 (Not sure rewatch march 22 29.45)
@@ -661,21 +666,21 @@ networks. If we simplify our problem by excluding non-linear activation function
 We indicate a linear predictor as $\beta \in \mathbb{R}^{D}$ and define the map $\mathcal{P}: \mathcal{W} \rightarrow \mathbb{R}^D$ which sends a set of weights in the corresponding linear predictor.
 In the case of a binary classification task using logistic loss the global minimum of a loss $\mathcal{L}(\dot)$  defined as 
 $$
-\min _{\mathbf{w} \in \mathcal{W}} \mathcal{L}_{\mathcal{P}}(\mathbf{w}):=\sum^N \ell\left(\left\langle\mathbf{x}_n, \mathcal{P}(\mathbf{w})\right\rangle, y_n\right)
+\min\_{\mathbf{w} \in \mathcal{W}} \mathcal{L\}\_{\mathcal{P}}(\mathbf{w}):=\sum^N \ell\left(\left\langle\mathbf{x}\_n, \mathcal{P}(\mathbf{w})\right\rangle, y\_n\right)
 $$
-can't be achieved for any finite $\beta$. To overcome this problem the loss can be minimized by scaling the norm of any linear predictor that separates the data to infinity, focusing then on the direction $\overline{\boldsymbol{\beta}}^{\infty}=\lim _{t \rightarrow \infty} \frac{\boldsymbol{\beta}^{(t)}}{\left\|\boldsymbol{\beta}^{(t)}\right\|}$ <br>
+can't be achieved for any finite $\beta$. To overcome this problem the loss can be minimized by scaling the norm of any linear predictor that separates the data to infinity, focusing then on the direction $\overline{\boldsymbol{\beta}}^{\infty}=\lim \_{t \rightarrow \infty} \frac{\boldsymbol{\beta}^{(t)}}{\left\|\boldsymbol{\beta}^{(t)}\right\|}$ <br>
 Under some assumptions described in the paper, the authors prove that:
 For any depth L, almost all linearly separable
-datasets $\{ x_{n}, y_{n} \}^{N}_{n=1} almost all initializations $w^{(0)}$, , and any bounded sequence of step sizes $\{\eta_{t}\}_{t}$, consider the sequence gradient descent iterates $w^{(t)}$  defined as:
+datasets $\{ x\_{n}, y\_{n} \}^{N}\_{n=1}$ almost all initializations $w^{(0)}$, , and any bounded sequence of step sizes $\{\eta\_{t}\}\_{t}$, consider the sequence gradient descent iterates $w^{(t)}$  defined as:
 $$
 \mathbf{w}^{(t+1)}=\mathbf{w}^{(t)}-\eta_t \nabla_{\mathbf{w}} \mathcal{L}_{\mathcal{P}}\left(\mathbf{w}^{(t)}\right)=\mathbf{w}^{(t)}-\eta_t \nabla_{\mathbf{w}} \mathcal{P}\left(\mathbf{w}^{(t)}\right) \nabla_{\boldsymbol{\beta}} \mathcal{L}(\mathcal{P}(\mathbf{w}(t)))
 $$
 for minimizing $\mathcal{L}_{\mathcal{P}_{\text{full}}}(\mathbf{w})$ as described above  with exponential loss $\ell(\widehat{y}, y)=\exp (-\widehat{y} y)$  over L–layer fully connected linear networks. <br>
 
-If  the iterates $w^{(t)}$ minimize the objective, i.e., $\mathcal{L}_{\mathcal{P}_{\text{full}}}(w(t)) \rightarrow 0$,  $w(t)$, and consequently $\beta^{(t)} = \mathcal{P}_{\text{full}}(w(t))$, converge in direction to yield a separator with positive margin, and  gradients
+If  the iterates $w^{(t)}$ minimize the objective, i.e., $\mathcal{L}\_{\mathcal{P}\_{\text{full}}}(w(t)) \rightarrow 0$,  $w(t)$, and consequently $\beta^{(t)} = \mathcal{P}\_{\text{full}}(w(t))$, converge in direction to yield a separator with positive margin, and  gradients
 concerning linear predictors ∇βL(β(t)) converge in direction, and then the limit direction is given by
 $$
-\overline{\boldsymbol{\beta}}^{\infty}=\lim _{t \rightarrow \infty} \frac{\mathcal{P}_{\text {full }}\left(\mathbf{w}^{(t)}\right)}{\left\|\mathcal{P}_{\text {full }}\left(\mathbf{w}^{(t)}\right)\right\|}=\frac{\boldsymbol{\beta}_{\ell_2}^*}{\left\|\boldsymbol{\beta}_{\ell_0}^*\right\|} \text {, where } \boldsymbol{\beta}_{\ell_2}^*:=\underset{w}{\operatorname{argmin}}\|\boldsymbol{\beta}\|_2^2 \quad \text { s.t. } \forall n, y_n\left\langle\mathbf{x}_n, \boldsymbol{\beta}\right\rangle \geq 1
+\overline{\boldsymbol{\beta}}^{\infty}=\lim \_{t \rightarrow \infty} \frac{\mathcal{P}\_{\text {full }}\left(\mathbf{w}^{(t)}\right)}{\left\|\mathcal{P}\_{\text {full }}\left(\mathbf{w}^{(t)}\right)\right\|}=\frac{\boldsymbol{\beta}\_{\ell\_2}^*}{\left\|\boldsymbol{\beta}\_{\ell_0}^*\right\|} \text {, where } \boldsymbol{\beta}\_{\ell_2}^*:=\underset{w}{\operatorname{argmin}}\|\boldsymbol{\beta}\|_2^2 \quad \text { s.t. } \forall n, y_n\left\langle\mathbf{x}_n, \boldsymbol{\beta}\right\rangle \geq 1
 $$
 
 This theorem that the implicti bias of gradient descent doesn't depend on the depth of the net. Remarkably the asymptotic
@@ -715,7 +720,7 @@ A possible intuition about this phenomenon:
 - Case 3: $|\text{dataset}| << |\text{parameters}|$ The model can fit the data in many different ways, and regularization bias toward solutions that generalize well.
 
 ### Spectral bias
-![spectral_bias](spectral_bias.png) 
+![spectral_bias](images/spectral_bias.png) 
 <br>
 <br>
 We start our analysis with **Spectral bias** which is the tendency of neural networks to learn functions that are smooth in the frequency domain. <br>
@@ -749,7 +754,7 @@ e^{-\lambda_1 t} & & & \\
 \end{array}\right] \mathcal{Y}
 $$
 
-The above equation shows that the convergence rate of $\boldsymbol{q}_i^T\left(f\left(\mathcal{X}, \boldsymbol{\theta}(t)\right)-\mathcal{Y} \right)$ is determined by the i-th eigenvalue
+The above equation shows that the convergence rate of $\boldsymbol{q}\_i^T\left(f\left(\mathcal{X}, \boldsymbol{\theta}(t)\right)-\mathcal{Y} \right)$ is determined by the i-th eigenvalue
 $\lambda_{i}$. Moreover, we can decompose the training error into the eigenspace of the NTK as
 $$
 \begin{aligned}
@@ -902,7 +907,7 @@ $$
 <br>
 It's interesting to review this approach from a more "harmonic" perspective. <br>
 Using the idea above about the loss in general we can construct an invariant function in the following way:
-Let $\bar{f}: \mathbb{R} \rightarroe \mathbb{R}$  s.t $\bar{f}(\omega+q)=\bar{f}(\omega) \forall q \in \mathbb{R}$. $\bar{f}$ is constant and  $\widehat{f}(0)$ is the only non zero Fourier transform.
+Let $\bar{f}: \mathbb{R} \rightarrow \mathbb{R}$  s.t $\bar{f}(\omega+q)=\bar{f}(\omega) \forall q \in \mathbb{R}$. $\bar{f}$ is constant and  $\widehat{f}(0)$ is the only non zero Fourier transform.
 
 $$
 \underline{\mathrm{f}}(w)=\int_{-\infty}^{\infty} d t f(w-t), \quad f: \mathbb{R} \rightarrow \mathbb{R} .
@@ -930,7 +935,7 @@ Thus some directions in the gradient are not allowed by the invariance of the lo
 
 **Learned weights and symmetry**
 As we have seen in the previous section data agumentation bias the loss function and consequently the gradient descent and the learned weights. The effect on the last is remarkably evident as we can see in the below picture:
-![symmetry](/learned_weights.png)
+![symmetry](images/learned_weights.png)
 <br>
 <br>
 In figure learned weights for, respectively, translation (a), rotation (b),
@@ -938,7 +943,6 @@ scale (c) and horizontal-vertical flip (d) single data symmetry
 To explicit the connection between the implicit bias of the loss and the weights we redirect to the following [paper](https://arts.units.it/retrieve/856df9ab-4e98-4bab-b71e-591336d25db0/Data_Symmetries_and_Learning_in_Fully_Connected_Neural_Networks.pdf) the provides all the details.
 Furthermore, in the paper they analyze how data augmentation affects the loss in the frequency domain. Using the property:
 $$
-
 \hat{\mathcal{L}}(g W)(K)=|\operatorname{det} g|^{-1} \hat{\mathcal{L}}\left(\left(g^T\right)^{-1} K\right)
 $$
 <!---
@@ -950,7 +954,7 @@ ASK TO ANSELMI I don't understand it
 in the paper [DeepSets](https://arxiv.org/pdf/1703.06114.pdf) the authors provide some theoretical understanding for designing a permutational equivarian layer.<br>
 Using the definition of equivariance provided before let's define a neural network layer as:
 $$
-\mathrm{f}_{\Theta}(\mathbf{x}) \doteq \sigma(\Theta \mathbf{x}) \quad \Theta \in \mathbb{R}^{M \times M}
+\mathrm{f}\_{\Theta}(\mathbf{x}) \doteq \sigma(\Theta \mathbf{x}) \quad \Theta \in \mathbb{R}^{M \times M}
 $$
 where $\Theta$ is a weight vector and $\sigma$ is a non-linear activation function. The following lemma presented in the paper suggests a sufficient conditions for permutations-equivariance in this type of functions 
 **Lemma 3** The function $\mathbf{f}_{\Theta}: \mathbb{R}^M \rightarrow \mathbb{R}^M$ as defined above is permutation equivariant if and only if all the off-diagonal elements of $\Theta$ are tied together and all the diagonal elements are equal as well:
@@ -1026,7 +1030,7 @@ We then calculate the loss taking into account the error in the prediction and t
 The goal is to have the sparser mask that still allows the network to perform well on the task. <br> 
 The result of this procedure can be seen below:
 
-![feat_viz](/feat_viz.png)
+![feat_viz](images/feat_viz.png)
 <br>
 As we can see the elements on which the network is focusing are very different from the ones that we would have expected. The majority of the frequencies are killed and only very few are retained, this raises a possible risk of exploitation cause we can fool the network into misclassifying elements by constructing on purpose ambiguous images.<br>
 
@@ -1048,14 +1052,14 @@ For example, let's suppose to apply this strategy to harmonic oscillator. We kno
 $$
 \left(\partial_t-\omega^2 \partial_{x x}\right) u \equiv L u=0
 $$
-Thus we want to infer the $L$ in the problem using a set of observations: $\left\{u\left((x, t)_i\right) \equiv u_i\right\}_{i=1}^N$.
+Thus we want to infer the $L$ in the problem using a set of observations: $\{u((x, t)\_i) \equiv u_i}\_{i=1}^N$.
 We proceed to define a dictionary of symbols:
 $$
-\partial_t u=\left\{1, u, u^2, u_x, u_x^2, u u_x, u_{x x}, u_{x x}^2, u u_{x x}, u_x, u_{x x}\right\} \alpha=D \alpha
+\partial_t u=\{1, u, u^2, u_x, u_x^2, u u_x, u_{x x}, u_{x x}^2, u u_{x x}, u_x, u_{x x}} \alpha=D \alpha
 $$
 and we want now to minimize the number of active terms in $\alpha$. The minimization problem becomes:
 $$
-\alpha^*=\underset{\alpha}{\arg \min }\left\|\partial_{\mathbf{t}} \mathbf{u}_{\mathbf{i}}-\mathbf{D}_{\mathrm{i}} \alpha\right\|_2+\|\alpha\|_0
+\alpha^*=\underset{\alpha}{\arg \min }\|\partial_{\mathbf{t}} \mathbf{u}_{\mathbf{i}}-\mathbf{D}_{\mathrm{i}} \alpha\|_2+\|\alpha\|_0
 $$
 <br>
 
