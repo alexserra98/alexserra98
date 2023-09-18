@@ -36,7 +36,7 @@ When we perform a gradient descent update we introduce only a small increment in
 $$
 \frac{d \theta}{d t}=-\nabla\_\theta \mathcal{L}(\theta)=-\frac{1}{N} \sum\_{i=1}^N \nabla\_\theta f\left(\mathbf{x}^{(i)} ; \theta\right) \nabla\_f \ell\left(f, y^{(i)}\right)
 $$
-The solution of the ODE in the above expression is known as [*gradient flow*](https://statmech.stanford.edu/post/gradient\_flows\_01/) 
+The solution of the ODE in the above expression is known as [\*gradient flow\*](https://statmech.stanford.edu/post/gradient\_flows\_01/) 
 When can use this result to derive an expression for the evolution of the network output:
 $$
 \frac{d f(\mathbf{x} ; \theta)}{d t}=\frac{d f(\mathbf{x} ; \theta)}{d \theta} \frac{d \theta}{d t}=-\frac{1}{N} \sum\_{i=1}^N \underbrace{\nabla\_\theta f(\mathbf{x} ; \theta)^{\top} \nabla\_\theta f\left(\mathbf{x}^{(i)} ; \theta\right)}\_{\text {Neural tangent kernel }} \nabla\_f \ell\left(f, y^{(i)}\right)
@@ -90,8 +90,8 @@ $\sum\_{j=1}^N v\_j \varphi\left(\vec{\omega}^{(j)} \cdot \vec{x}+b\_j\right)$
 wherein $v\_j, b\_j \in \mathbb{R}, \vec{\omega}^{(j)} \in \mathbb{R}^n$ and $\phi$ is continuoi discriminatory function.
 
 ## Regularization
-A key concept that motivates the usage of regolarization is called: the *manifold hypothesis*. Quoting [wikipedia](https://en.wikipedia.org/wiki/Manifold\_hypothesis)
-'The * manifold hypothesis* posits that many high-dimensional data sets that occur in the real world actually lie along low-dimensional latent manifolds inside that high-dimensional space. As a consequence of the manifold hypothesis, many data sets that appear to initially require many variables to describes, can actually be described by a comparatively small number of variables, likened to the local coordinate system of the underlying manifold. It is suggested that this principle underpins the effectiveness of machine learning algorithms in describing high-dimensional data sets by considering a few common features...
+A key concept that motivates the usage of regolarization is called: the \*manifold hypothesis\*. Quoting [wikipedia](https://en.wikipedia.org/wiki/Manifold\_hypothesis)
+'The \* manifold hypothesis\* posits that many high-dimensional data sets that occur in the real world actually lie along low-dimensional latent manifolds inside that high-dimensional space. As a consequence of the manifold hypothesis, many data sets that appear to initially require many variables to describes, can actually be described by a comparatively small number of variables, likened to the local coordinate system of the underlying manifold. It is suggested that this principle underpins the effectiveness of machine learning algorithms in describing high-dimensional data sets by considering a few common features...
 ...Within one of these manifolds, it’s always possible to interpolate between two inputs, that is to say, morph one into another via a continuous path along which all points fall on the manifold.
 The ability to interpolate between samples is the key to generalization in deep learning.'
 
@@ -114,30 +114,30 @@ $$
 \boldsymbol{w} \leftarrow(1-\epsilon \alpha) \boldsymbol{w}-\epsilon \nabla\_{\boldsymbol{w}} J(\boldsymbol{w} ; \boldsymbol{X}, \boldsymbol{y}) .
 $$
 Thus we can see that the effect of the regularization term is to rescale the weight vector by a factor of $(1-\epsilon \alpha)$ on every step. <br>
-We want to extend our analysis to the entire course of the training, but first of all, we further simplify the analysis by making a quadratic approximation of the loss function around the optimal unregularized solution $\boldsymbol{w}^*$: 
+We want to extend our analysis to the entire course of the training, but first of all, we further simplify the analysis by making a quadratic approximation of the loss function around the optimal unregularized solution $\boldsymbol{w}^\*$: 
 $$
-\hat{J}(\boldsymbol{\theta})=J\left(\boldsymbol{w}^*\right)+\frac{1}{2}\left(\boldsymbol{w}-\boldsymbol{w}^*\right)^{\top} \boldsymbol{H}\left(\boldsymbol{w}-\boldsymbol{w}^*\right)
+\hat{J}(\boldsymbol{\theta})=J\left(\boldsymbol{w}^\*\right)+\frac{1}{2}\left(\boldsymbol{w}-\boldsymbol{w}^\*\right)^{\top} \boldsymbol{H}\left(\boldsymbol{w}-\boldsymbol{w}^\*\right)
 $$
 where $\boldsymbol{H}$ is the Hessian matrix of $J$. Remark: the first order term is 0 because we are the minimum and for the same reason $\boldsymbol{H}$ is positive semidefinite. The minimum of $\widehat{J}$ occurs when 
 $$
-\nabla\_{\boldsymbol{w}} \hat{J}(\boldsymbol{w})=\boldsymbol{H}\left(\boldsymbol{w}-\boldsymbol{w}^*\right)
+\nabla\_{\boldsymbol{w}} \hat{J}(\boldsymbol{w})=\boldsymbol{H}\left(\boldsymbol{w}-\boldsymbol{w}^\*\right)
 $$
-Now want to perform spectral analysis of the minimum $\boldsymbol{w}^*$ to explicit the effect of the regularization:
+Now want to perform spectral analysis of the minimum $\boldsymbol{w}^\*$ to explicit the effect of the regularization:
 
 $$
 \begin{array}{r}
-\alpha \tilde{\boldsymbol{w}}+\boldsymbol{H}\left(\tilde{\boldsymbol{w}}-\boldsymbol{w}^*\right)=0 \\
-(\boldsymbol{H}+\alpha \boldsymbol{I}) \tilde{\boldsymbol{w}}=\boldsymbol{H} \boldsymbol{w}^* \\
-\tilde{\boldsymbol{w}}=(\boldsymbol{H}+\alpha \boldsymbol{I})^{-1} \boldsymbol{H} \boldsymbol{w}^* .
+\alpha \tilde{\boldsymbol{w}}+\boldsymbol{H}\left(\tilde{\boldsymbol{w}}-\boldsymbol{w}^\*\right)=0 \\
+(\boldsymbol{H}+\alpha \boldsymbol{I}) \tilde{\boldsymbol{w}}=\boldsymbol{H} \boldsymbol{w}^\* \\
+\tilde{\boldsymbol{w}}=(\boldsymbol{H}+\alpha \boldsymbol{I})^{-1} \boldsymbol{H} \boldsymbol{w}^\* .
 \end{array}
 $$
 Since $\boldsymbol{H}$ is real and symmetric we can decompose into a diagonal matrix $\boldsymbol{\Lambda}$
 and orthonormal basis of eigenvector $\boldsymbol{\Lambda}$ thus we obtain: 
 $$
 \begin{aligned}
-\tilde{\boldsymbol{w}} & =\left(\boldsymbol{Q} \boldsymbol{\Lambda} \boldsymbol{Q}^{\top}+\alpha \boldsymbol{I}\right)^{-1} \boldsymbol{Q} \boldsymbol{\Lambda} \boldsymbol{Q}^{\top} \boldsymbol{w}^* \\
-& =\left[\boldsymbol{Q}(\boldsymbol{\Lambda}+\alpha \boldsymbol{I}) \boldsymbol{Q}^{\top}\right]^{-1} \boldsymbol{Q} \boldsymbol{\Lambda} \boldsymbol{Q}^{\top} \boldsymbol{w}^* \\
-& =\boldsymbol{Q}(\boldsymbol{\Lambda}+\alpha \boldsymbol{I})^{-1} \boldsymbol{\Lambda} \boldsymbol{Q}^{\top} \boldsymbol{w}^*
+\tilde{\boldsymbol{w}} & =\left(\boldsymbol{Q} \boldsymbol{\Lambda} \boldsymbol{Q}^{\top}+\alpha \boldsymbol{I}\right)^{-1} \boldsymbol{Q} \boldsymbol{\Lambda} \boldsymbol{Q}^{\top} \boldsymbol{w}^\* \\
+& =\left[\boldsymbol{Q}(\boldsymbol{\Lambda}+\alpha \boldsymbol{I}) \boldsymbol{Q}^{\top}\right]^{-1} \boldsymbol{Q} \boldsymbol{\Lambda} \boldsymbol{Q}^{\top} \boldsymbol{w}^\* \\
+& =\boldsymbol{Q}(\boldsymbol{\Lambda}+\alpha \boldsymbol{I})^{-1} \boldsymbol{\Lambda} \boldsymbol{Q}^{\top} \boldsymbol{w}^\*
 \end{aligned}
 $$
 The effect of the regularization is to rescale the eigenvector by a factor of $\frac{\lambda}{\lambda+\alpha}$, thus the regularization has the effect of reducing the magnitude of the eigenvector of the Hessian matrix which represents the curvature of the function
@@ -167,13 +167,13 @@ $$
 
 
 ### Dropout
-The regularization technique *dropout* consists in *shutting off* some nodes (input and hidden layer) in a neural network (as seen in Figure 1). Since most of neural networks consisits in a series of
+The regularization technique \*dropout\* consists in \*shutting off\* some nodes (input and hidden layer) in a neural network (as seen in Figure 1). Since most of neural networks consisits in a series of
 affine transformations and nonlinearities, we can effectively remove a unit from a network by multiplying its output value by zero., thus creating a new network architecture out of the parent network. The nodes are dropped by a dropout probability of p.
 
 There are two main reasons why dropout works at reducing overfitting:
 - It reduces the co-adaptation of the units, since the network can't rely on the presence of a particular unit, it has to learn a more robust representation. 'Dropout thus regularizes each hidden unit to be
 not merely a good feature but a feature that is good in many contexts.'
-- We can interpret the application of dropout as *bagging* with a very  large *ensemble* obtained with all the *sub-network* obtained by dropping out some units. Nevertheless these two methods are not identical cause the *sub-network* are not independent since they share the parameters, and the models are not trained to convergence but instead a tiny fraction of the possible
+- We can interpret the application of dropout as \*bagging\* with a very  large \*ensemble\* obtained with all the \*sub-network\* obtained by dropping out some units. Nevertheless these two methods are not identical cause the \*sub-network\* are not independent since they share the parameters, and the models are not trained to convergence but instead a tiny fraction of the possible
 sub-networks are each trained for a single step, and the parameters sharing causes
 the remaining sub-networks to arrive at good settings of the parameters
 - As we have seen in the before section regularization can be linked to the injection of noise to hidden units. In practice if a specific hidden unit learns a feature to classify an entity, and then we shut off it, the model will have to make another unit learn the same feature (redundant encoding) or another feature that is relevant to classification task, thus the model will be more robust to the loss of a specific unit.
@@ -210,11 +210,11 @@ We then rewrite the problem factoring the matrix $X$ as $X=U V^{T}$:
 $$
 \min \_{X \in \mathbb{R}^{n \times n}} \| \text { observed }(X)-y \|\_2^2 \equiv \min \_{U, V \in \mathbb{R}^{n \times n}}\| \text { observed }\left(U V^{\top}\right)-y \|\_2^2
 $$
-If we train our model with this setting and using *gradient descent* what we observe is that if we take infinitely small stepsize, and with additional conditions the result to which the algorithm converges is the minimum nuclear norm solution. Besides if the data come from low-rank matrices the model achieves good generalization ability <br>
+If we train our model with this setting and using \*gradient descent\* what we observe is that if we take infinitely small stepsize, and with additional conditions the result to which the algorithm converges is the minimum nuclear norm solution. Besides if the data come from low-rank matrices the model achieves good generalization ability <br>
 There's a conjecture associated to this problem:
 > With $U(0) \rightarrow 0$, the flow $\dot{U} = - \nabla \| A(UU^{T}) -y \|^{2}$ converge to the minimum nuclear norm solution:
 $$
-U(\infty) U(\infty)^{\top} \rightarrow \min \_{W \geqslant 0}\|W\|\_* \text { s.t. }\left\langle A\_i, W\right\rangle=y\_i
+U(\infty) U(\infty)^{\top} \rightarrow \min \_{W \geqslant 0}\|W\|\_\* \text { s.t. }\left\langle A\_i, W\right\rangle=y\_i
 $$
 [paper](https://papers.nips.cc/paper\_files/paper/2017/hash/58191d2a914c6dae66371c9dcdc91b41-Abstract.html)
 
@@ -321,45 +321,45 @@ Therefore, we conclude that if $x\_{0}$ is orthogonal to the null space of A ( $
 ### Early stopping
 The following calculation comes from Ian Goodfellow's book [Deep Learning](https://www.deeplearningbook.org/contents/regularization.html) <br>
 
-*Early stoppingé is a very popular regularization technique that consists in storing the parameter setting reached by the optimization algorithm that realizes the lowest validation set error. <br> The number of steps hyperparameter has U-shaped validation performance curve, thus the algorithm will be at the beginning of the rise.<br>
+*Early stopping* is a very popular regularization technique that consists in storing the parameter setting reached by the optimization algorithm that realizes the lowest validation set error. <br> The number of steps hyperparameter has U-shaped validation performance curve, thus the algorithm will be at the beginning of the rise.<br>
 We can see then that *early stopping* can be interpreted as an hyperparameters selection algorithm that prevent overfitting controlling the capacity of the model through the number of steps. <br>
 
 It has been shown that *early stopping* restricts the optimization procedure to a relatively smaller volume of parameters in the space of the initial parameter value, this is indeed the **regularization effect** of this strategy. <br>
 We can actually push our analysis further and show that in the simple setting of quadratic approximation of the loss this technique is equivalent to L2 regularization. <br>
-Let's start by approximating the cost function $J$ in the neighborhood of the optimal solution $w^\*$ as we did in *weight decay*:
+Let's start by approximating the cost function $J$ in the neighborhood of the optimal solution $w^\*$ as we did in \*weight decay\*:
 $$
-\hat{J}(\boldsymbol{\theta})=J\left(\boldsymbol{w}^*\right)+{ }\_2^1\left(\boldsymbol{w}-\boldsymbol{w}^*\right)^{\top} \boldsymbol{H}\left(\boldsymbol{w}-\boldsymbol{w}^*\right)
+\hat{J}(\boldsymbol{\theta})=J\left(\boldsymbol{w}^\*\right)+{ }\_2^1\left(\boldsymbol{w}-\boldsymbol{w}^\*\right)^{\top} \boldsymbol{H}\left(\boldsymbol{w}-\boldsymbol{w}^\*\right)
 $$
 where $\boldsymbol{H}$ is the Hessian matrix of $J$. For the same reasons stated in L2 section $\boldsymbol{H}$ is positive and semidefinite<br>
 With this approximation, we can rewrite the gradient descent update rule as:
 $$
-\nabla\_{\boldsymbol{w}} \hat{J}(\boldsymbol{w})=\boldsymbol{H}\left(\boldsymbol{w}-\boldsymbol{w}^*\right)
+\nabla\_{\boldsymbol{w}} \hat{J}(\boldsymbol{w})=\boldsymbol{H}\left(\boldsymbol{w}-\boldsymbol{w}^\*\right)
 $$
 Now we will write the update rule, for simplicity we set the initial parameter vector to the origin $w\_{0} = 0$ and then perform spectral decomposition of the Hessian matrix $\boldsymbol{H} = \boldsymbol{Q} \Lambda \boldsymbol{Q}^{\top}$:
 $$
 \begin{aligned}
 \boldsymbol{w}^{(\tau)} & =\boldsymbol{w}^{(\tau-1)}-\epsilon \nabla\_{\boldsymbol{w}} \hat{J}\left(\boldsymbol{w}^{(\tau-1)}\right) \\
-& =\boldsymbol{w}^{(\tau-1)}-\epsilon \boldsymbol{H}\left(\boldsymbol{w}^{(\tau-1)}-\boldsymbol{w}^*\right) \\
-\boldsymbol{w}^{(\tau)}-\boldsymbol{w}^* & =(\boldsymbol{I}-\epsilon \boldsymbol{H})\left(\boldsymbol{w}^{(\tau-1)}-\boldsymbol{w}^*\right) .
+& =\boldsymbol{w}^{(\tau-1)}-\epsilon \boldsymbol{H}\left(\boldsymbol{w}^{(\tau-1)}-\boldsymbol{w}^\*\right) \\
+\boldsymbol{w}^{(\tau)}-\boldsymbol{w}^\* & =(\boldsymbol{I}-\epsilon \boldsymbol{H})\left(\boldsymbol{w}^{(\tau-1)}-\boldsymbol{w}^\*\right) .
 \end{aligned}
 $$
 and then:
 $$
 \begin{aligned}
-\boldsymbol{w}^{(\tau)}-\boldsymbol{w}^* & =\left(\boldsymbol{I}-\epsilon \boldsymbol{Q} \boldsymbol{\Lambda} \boldsymbol{Q}^{\top}\right)\left(\boldsymbol{w}^{(\tau-1)}-\boldsymbol{w}^*\right) \\
-\boldsymbol{Q}^{\top}\left(\boldsymbol{w}^{(\tau)}-\boldsymbol{w}^*\right) & =(\boldsymbol{I}-\epsilon \boldsymbol{\Lambda}) \boldsymbol{Q}^{\top}\left(\boldsymbol{w}^{(\tau-1)}-\boldsymbol{w}^*\right)
+\boldsymbol{w}^{(\tau)}-\boldsymbol{w}^\* & =\left(\boldsymbol{I}-\epsilon \boldsymbol{Q} \boldsymbol{\Lambda} \boldsymbol{Q}^{\top}\right)\left(\boldsymbol{w}^{(\tau-1)}-\boldsymbol{w}^\*\right) \\
+\boldsymbol{Q}^{\top}\left(\boldsymbol{w}^{(\tau)}-\boldsymbol{w}^\*\right) & =(\boldsymbol{I}-\epsilon \boldsymbol{\Lambda}) \boldsymbol{Q}^{\top}\left(\boldsymbol{w}^{(\tau-1)}-\boldsymbol{w}^\*\right)
 \end{aligned}
 $$
 In order to guarantee convergence (?) we set $\epsilon$ such that 
 $\left|1-\epsilon \lambda\_i\right|<1$ and the update at a time $\tau$ is:
 $$
-\boldsymbol{Q}^{\top} \boldsymbol{w}^{(\tau)}=\left[\boldsymbol{I}-(\boldsymbol{I}-\epsilon \boldsymbol{\Lambda})^\tau\right] \boldsymbol{Q}^{\top} \boldsymbol{w}^*
+\boldsymbol{Q}^{\top} \boldsymbol{w}^{(\tau)}=\left[\boldsymbol{I}-(\boldsymbol{I}-\epsilon \boldsymbol{\Lambda})^\tau\right] \boldsymbol{Q}^{\top} \boldsymbol{w}^\*
 $$
 We rewrite $Q^{\top} \tilde{\boldsymbol{w}}$ from !add ref! as:
 $$
 \begin{aligned}
-& \boldsymbol{Q}^{\top} \tilde{\boldsymbol{w}}=(\boldsymbol{\Lambda}+\alpha \boldsymbol{I})^{-1} \boldsymbol{\Lambda} \boldsymbol{Q}^{\top} \boldsymbol{w}^* \\
-& \boldsymbol{Q}^{\top} \tilde{\boldsymbol{w}}=\left[\boldsymbol{I}-(\boldsymbol{\Lambda}+\alpha \boldsymbol{I})^{-1} \alpha\right] \boldsymbol{Q}^{\top} \boldsymbol{w}^*
+& \boldsymbol{Q}^{\top} \tilde{\boldsymbol{w}}=(\boldsymbol{\Lambda}+\alpha \boldsymbol{I})^{-1} \boldsymbol{\Lambda} \boldsymbol{Q}^{\top} \boldsymbol{w}^\* \\
+& \boldsymbol{Q}^{\top} \tilde{\boldsymbol{w}}=\left[\boldsymbol{I}-(\boldsymbol{\Lambda}+\alpha \boldsymbol{I})^{-1} \alpha\right] \boldsymbol{Q}^{\top} \boldsymbol{w}^\*
 \end{aligned}
 $$
 Now if we compare this update rule of weight decay to the one of a training halted at a time $\tau$ we can see that they are equivalent if we set::
@@ -377,7 +377,7 @@ $$
 \end{aligned}
 $$
 In all the examples of regularization seen so far we have shown that parameter values corresponding to directions of significant curvature (of the
-objective function) are affected less than directions of less curvature. In the case of weight decay we have modified the update rule so that we actively rescale $w^{*}$ along the axis of the eigenvectors while in the case of early stopping the parameters that correspond
+objective function) are affected less than directions of less curvature. In the case of weight decay we have modified the update rule so that we actively rescale $w^{\*}$ along the axis of the eigenvectors while in the case of early stopping the parameters that correspond
 to directions of significant curvature tend to be learned early relative to parameters
 corresponding to directions of less curvature. <br> 
 
@@ -601,11 +601,11 @@ ADD PLOT
 **Closing Remarks on gradient descent**
 ![sgd1](images/robust-sgd0.png) <br>
 <br>
-The goal of an optimization algorithm is to converge to *good* minima that behaves well in terms of:
+The goal of an optimization algorithm is to converge to \*good\* minima that behaves well in terms of:
 - robustness
 - generalization
 
-Both the train-set and test-set are sampled from the same distribution, and for this reason, we expect the train loss function to be very close to the test loss function. What we want is to find a shape of the loss that is robust to small perturbations (that comes from training different samples but from the same distribution). There's an ongoing debate regarding the geometry of these shapes, but a generally accepted idea is that a function with a *flat* minima can provide robustness and generalization.  <br>
+Both the train-set and test-set are sampled from the same distribution, and for this reason, we expect the train loss function to be very close to the test loss function. What we want is to find a shape of the loss that is robust to small perturbations (that comes from training different samples but from the same distribution). There's an ongoing debate regarding the geometry of these shapes, but a generally accepted idea is that a function with a \*flat\* minima can provide robustness and generalization.  <br>
 ![sgd2](images/robust-sgd.png) <br>
 <br>
 <!---
@@ -630,7 +630,7 @@ Provides a bit of regularization — Batch normalization adds a little noise to 
 7. May give better results overall — Some tests seem to show batch normalization actually improves the training results. However, it’s really an optimization to help train faster, so you shouldn’t think of it as a way to make your network better. But since it lets you train networks faster, that means you can iterate over more designs more quickly. It also lets you build deeper networks, which are usually better. So when you factor in everything, you’re probably going to end up with better results if you build your networks with batch normalization. <br>
 
 **smoothing of the objective function**:
-In the initial paper in which the method is proposed [Batch Normalization: Accelerating Deep Network Training by Reducing Internal Covariate Shift](https://arxiv.org/abs/1502.03167) they account the effectiveness of this technique to the reduction of the so-called *internal covariance shift*. In fact, recent works showed that batch normalization does not reduce internal covariate shift, but rather smooths the objective function, which in turn improves the performance <br>
+In the initial paper in which the method is proposed [Batch Normalization: Accelerating Deep Network Training by Reducing Internal Covariate Shift](https://arxiv.org/abs/1502.03167) they account the effectiveness of this technique to the reduction of the so-called \*internal covariance shift\*. In fact, recent works showed that batch normalization does not reduce internal covariate shift, but rather smooths the objective function, which in turn improves the performance <br>
 The argument proposed in [How Does Batch Normalization Help Optimization?](https://arxiv.org/pdf/1805.11604.pdf) is  BatchNorm produces 
 the parameter landscape significantly more smooth. It can be shown that the Lipschitzness of the loss function improves as the magnitudes of the gradients get smaller and as a consequence the loss changes at a smaller rate. In addition the quadratic form of the loss Hessian with respect to the activations in the gradient direction is both rescaled by the input variance (inducing resilience to mini-batch variance), and decreased by an additive factor (increasing smoothness). Since this term represents the second order term of the Taylor expansion of the gradient around the current point reducing it results in making the first order term (the gradient) more predictive. <br>
 
@@ -680,7 +680,7 @@ for minimizing $\mathcal{L}\_{\mathcal{P}\_{\text{full}}}(\mathbf{w})$ as descri
 If  the iterates $w^{(t)}$ minimize the objective, i.e., $\mathcal{L}\_{\mathcal{P}\_{\text{full}}}(w(t)) \rightarrow 0$,  $w(t)$, and consequently $\beta^{(t)} = \mathcal{P}\_{\text{full}}(w(t))$, converge in direction to yield a separator with positive margin, and  gradients
 concerning linear predictors ∇βL(β(t)) converge in direction, and then the limit direction is given by
 $$
-\overline{\boldsymbol{\beta}}^{\infty}=\lim \_{t \rightarrow \infty} \frac{\mathcal{P}\_{\text {full }}\left(\mathbf{w}^{(t)}\right)}{\left\|\mathcal{P}\_{\text {full }}\left(\mathbf{w}^{(t)}\right)\right\|}=\frac{\boldsymbol{\beta}\_{\ell\_2}^*}{\left\|\boldsymbol{\beta}\_{\ell\_0}^*\right\|} \text {, where } \boldsymbol{\beta}\_{\ell\_2}^*:=\underset{w}{\operatorname{argmin}}\|\boldsymbol{\beta}\|\_2^2 \quad \text { s.t. } \forall n, y\_n\left\langle\mathbf{x}\_n, \boldsymbol{\beta}\right\rangle \geq 1
+\overline{\boldsymbol{\beta}}^{\infty}=\lim \_{t \rightarrow \infty} \frac{\mathcal{P}\_{\text {full }}\left(\mathbf{w}^{(t)}\right)}{\left\|\mathcal{P}\_{\text {full }}\left(\mathbf{w}^{(t)}\right)\right\|}=\frac{\boldsymbol{\beta}\_{\ell\_2}^\*}{\left\|\boldsymbol{\beta}\_{\ell\_0}^\*\right\|} \text {, where } \boldsymbol{\beta}\_{\ell\_2}^\*:=\underset{w}{\operatorname{argmin}}\|\boldsymbol{\beta}\|\_2^2 \quad \text { s.t. } \forall n, y\_n\left\langle\mathbf{x}\_n, \boldsymbol{\beta}\right\rangle \geq 1
 $$
 
 This theorem that the implicti bias of gradient descent doesn't depend on the depth of the net. Remarkably the asymptotic
@@ -698,7 +698,7 @@ We now claim: <br>
 For almost all linearly separable datasets ${x\_{n}, y\_{n}}^{N}\_{n=1}$, almost all initializations $w(0)$, and any sequence of step sizes $\{ \eta\_{t}\}\_{t}$ with $\eta\_{t}$ smaller than the local Lipschitz at $w(t)$, consider the sequence gradient descent iterates w(t) described before for minimizing 
 $\mathcal{L}\_{\mathcal{P}\_\text{conv}}(w)$ in with exponential loss over 2–2-layer linear convolutional networks. If the iterates $w(t)$ minimize the objective, i.e., $\mathcal{L}\_{{P}\text{conv}}(w(t)) \rightarrow 0$, $w(t)$ converge in direction to yield a separator $\overline{\boldsymbol{\beta}}^{\infty}$ with positive margin, the phase of the Fourier coefficients $\widehat{\boldsymbol{\beta}}^{(t)}$ of the linear predictors $\beta(t)$ converge coordinate-wise, i.e., $\forall d$, $\exp^{i\phi}\widehat{\beta^{(t)}}[d] \rightarrow \exp^{i\phi}\overline{\widehat{\beta^{(t)}}}[d]$, and (d) the gradients $\nabla\_{\boldsymbol{\beta}} \mathcal{L}\left(\boldsymbol{\beta}^{(t)}\right)$ converge in direction, then the limit direction $\overline{\boldsymbol{\beta}}^{\infty}$ is given by,
 $$
-\overline{\boldsymbol{\beta}}^{\infty}=\frac{\boldsymbol{\beta}\_{\mathcal{F}, 1}^*}{\left\|\boldsymbol{\beta}\_{\mathcal{F}, 1}^*\right\|}, \text { where } \boldsymbol{\beta}\_{\mathcal{F}, 1}^*:=\underset{\boldsymbol{\beta}}{\operatorname{argmin}}\|\widehat{\boldsymbol{\beta}}\|\_1 \text { s.t. } \forall n, y\_n\left\langle\boldsymbol{\beta}, \mathbf{x}\_n\right\rangle \geq 1 .
+\overline{\boldsymbol{\beta}}^{\infty}=\frac{\boldsymbol{\beta}\_{\mathcal{F}, 1}^\*}{\left\|\boldsymbol{\beta}\_{\mathcal{F}, 1}^\*\right\|}, \text { where } \boldsymbol{\beta}\_{\mathcal{F}, 1}^\*:=\underset{\boldsymbol{\beta}}{\operatorname{argmin}}\|\widehat{\boldsymbol{\beta}}\|\_1 \text { s.t. } \forall n, y\_n\left\langle\boldsymbol{\beta}, \mathbf{x}\_n\right\rangle \geq 1 .
 $$
 
 The result above shows if we introduce a convolutional layer, even without explicit regularization, gradient descent is implicitly biased through solutions that are sparse in the frequency domain. <br>
@@ -713,7 +713,7 @@ Does the implicit bias actually match the prior over the distribution that we're
 
 ### Double descent
 Before diving deep into the topic, there's a phenomenon that is worth mentioning called [**double descent**](https://openai.com/research/deep-double-descent). <br>
-In a series of very popular models like ResNets, ConvNet, and transformers, performance first improves, then gets worse, and then we reach an *interpolation threshold* at which the model is barely enough to fit the train set the performance improves again. <br>
+In a series of very popular models like ResNets, ConvNet, and transformers, performance first improves, then gets worse, and then we reach an \*interpolation threshold\* at which the model is barely enough to fit the train set the performance improves again. <br>
 A possible intuition about this phenomenon:
 - Case 1: $|\text{dataset}| >> |\text{parameters}|$ There's way more than enough data to pin down the optimal parameters so it generalizes well.
 - Case 2: $|\text{dataset}| \approx |\text{parameters}|$ The model is just right to fit the data, it can memorize the data but can't generalize. , there is effectively only one model that fits the train data, and forcing it to fit even slightly noisy or misspecified labels will destroy its global structure. 
@@ -724,7 +724,7 @@ A possible intuition about this phenomenon:
 <br>
 <br>
 We start our analysis with **Spectral bias** which is the tendency of neural networks to learn functions that are smooth in the frequency domain. <br>
-Is very well known that deep fully-connected networks struggle to accurately approximate high-frequency or multi-scale functions and in the case of *PINNé has been shown that one of the leading reasons is the presence of spectral bias [6](Sifan Wang, Xinling Yu, and Paris Perdikaris. When and why PINNs fail to train: A neural tangent kernel perspective. arXiv preprint arXiv:2007.14527, 2020.). The following analysis is taken from [7](https://www.sciencedirect.com/science/article/pii/S0045782521002759) to which we refer for details. <br>
+Is very well known that deep fully-connected networks struggle to accurately approximate high-frequency or multi-scale functions and in the case of *PINN* has been shown that one of the leading reasons is the presence of spectral bias [6](Sifan Wang, Xinling Yu, and Paris Perdikaris. When and why PINNs fail to train: A neural tangent kernel perspective. arXiv preprint arXiv:2007.14527, 2020.). The following analysis is taken from [7](https://www.sciencedirect.com/science/article/pii/S0045782521002759) to which we refer for details. <br>
 We start by proposing the last calculation done in NTK sectio (add a link!) for which we were getting:
 $$
 f(\mathcal{X},\theta) \approx \left(I-e^{-\eta K\_{\infty} t}\right) \mathcal{Y}
@@ -798,7 +798,7 @@ In order to show this property we suppose that the pooling is made over the enti
 What is the bias imposed using pooling?<br>
 We consider a kernel $K$ and we call $G$ the set of translations that we assume have the structure of a group. We define the i-th element of the output of the convolutional layer with input $x \in \mathbb{R}^N$ as:
 $$
-\left\langle g\_i K, x\right\rangle=(x * K)\_i 
+\left\langle g\_i K, x\right\rangle=(x \* K)\_i 
 $$
 
 We then pool over the entire output:
@@ -849,13 +849,13 @@ We want to analyze now a very important theorem presented by Kondor and Trivedi 
 In this [site](https://dmol.pub/dl/Equivariant.html#groups-on-spaces)
 there's a very nice explanation of many concepts of this paper. <br>
 G-Equivariant Convolution Theorem:
-A neural network layer (linear map) $\phi$ is G-equivariant if and only if its form is a convolution operator $*$
+A neural network layer (linear map) $\phi$ is G-equivariant if and only if its form is a convolution operator $\*$
 $$
-\psi(f)=(f * \omega)(u)=\sum\_{g \in G} f \uparrow^G\left(u g^{-1}\right) \omega \uparrow^G(g)
+\psi(f)=(f \* \omega)(u)=\sum\_{g \in G} f \uparrow^G\left(u g^{-1}\right) \omega \uparrow^G(g)
 $$
 where  $f: U \rightarrow \mathbb{R}^n$ and $\omega: V \rightarrow \mathbb{R}^n$ are "lifted" functions of the group $U$ and $V$ which are subgroups of $G$ (including possible $G$). On the first layer of a neural network, $f$ is usually defined on the quotient space $U= \frac{G}{H}$. If the group $G$ is locally compact, then the convolution operator is 
 $$
-\psi(f)=(f * \omega)(u)=\int\_G f \uparrow^G\left(u g^{-1}\right) \omega \uparrow^G(g) d \mu(g)
+\psi(f)=(f \* \omega)(u)=\int\_G f \uparrow^G\left(u g^{-1}\right) \omega \uparrow^G(g) d \mu(g)
 $$ 
 where $\mu$ is the Haar measure on $G$. 
 <br>
@@ -868,7 +868,7 @@ But in the theorem, $f$ is defined on the quotient space $U= \frac{G}{H}$, so ho
 The fact is that the authors of the papers wanted to work on a much broader generalization of convolution in which the arguments are functions on a compact group $G$.
 In this case, the convolution is defined as:
 $$
-(f * g)(u)=\int\_G f\left(u v^{-1}\right) g(v) d \mu(v) .
+(f \* g)(u)=\int\_G f\left(u v^{-1}\right) g(v) d \mu(v) .
 $$
 The problem now is to connect the structure of a group $G$ with its homogeneous space $\mathcal{X}$ and we want to provide intuition behind it. <br>
 Since the $\mathcal{X}$ is homogeneous if we fix an $x\_{0}$ , for any $x$ we always have a $g$ s.t $x=g(x\_{0})$. In this way, we can "index" $\mathcal{X}$ through elements of $G$. Now the set of elements of $G$ that sends $x\_{0}$ in itself is a subgroup $H\_{0}$ called the "stabilizer" and all the $g\_{i}$ that sends $x\_{0}$ are coset of this stabilizer we can then chose a coset representative and denote it $\bar{x}$ meaning that it sends $x\_{0}$ to $x$.
@@ -896,7 +896,7 @@ the loss defined in this way is indeed invariant:
 $$
 \begin{aligned}
 &\begin{aligned}
-\mathcal{L}\left(g\_{\bar{\theta}} w\right) & =\frac{1}{N} \sum\_{i=1}^N \int \ell\left(\sigma\left\langle w, g^* g\_\theta x\_i\right\rangle ; y\_i\right) d \theta \\
+\mathcal{L}\left(g\_{\bar{\theta}} w\right) & =\frac{1}{N} \sum\_{i=1}^N \int \ell\left(\sigma\left\langle w, g^\* g\_\theta x\_i\right\rangle ; y\_i\right) d \theta \\
 & =\sum\_{i=1}^N \int \ell\left(\sigma\left\langle w, g\_\theta x\_i\right\rangle ; y\_i\right) d \theta \\
 & =\mathcal{L}(w)
 \end{aligned}\\
@@ -1012,7 +1012,7 @@ Take a look at this https://en.wikipedia.org/wiki/Capsule\_neural\_network
 As machine learning-based algorithms are increasingly used in real-world applications, the need for understanding their decisions is becoming more and more important. 
 Unfortunately, ANNs are still a blackboxs but some strategies has been devised to try to shed light on what's going on underneath.
 In this section, we will highlight some concepts and approaches regarding the interpretability of neural networks. <br>
-A very naive approach is to use designed features that are also interpretable, but this is limiting the expressive power of the network. This approach is called *signal processing* and was famous a few decades ago.
+A very naive approach is to use designed features that are also interpretable, but this is limiting the expressive power of the network. This approach is called \*signal processing\* and was famous a few decades ago.
 This shows one of the main problems with current machine learning: it's a **trade-off between performance and interpretability**. <br>
 When the model is agnostic to explicit biases the data "speaks" for themselves but the results are difficult/impossible to interpret. <br>
 
@@ -1022,7 +1022,7 @@ On the [page](https://distill.pub/2017/feature-visualization/) there's a beatifu
 The images below are made creating the input that "excites" the neurons the most per each layer. It's interesting to notice how the pattern to which each layer is more sensible becomes progressively complicated.<br>
 
 <br>
-During the lessons, we introduced a technique for *feature visualization* using **attention map**. <br>
+During the lessons, we introduced a technique for \*feature visualization\* using **attention map**. <br>
 The idea is that we want to create a map in the Fourier space for the images in order to filter out the frequencies that affect the most the prediciton.
 We start by training our net to solve a task, for example, recognizing cats from dogs. 
 Then we create a mask that has to be trained to filter the most important frequencies. The training iterate will consist of taking a pic from the dataset, mapping it in the Fourier Space, applying the mask, and feeding this preprocessed image to the initial network.
@@ -1046,7 +1046,7 @@ $$
 \partial\_{\mathbf{x}}, \partial\_{\mathbf{t}}, \nabla, \mathbf{P}, \mathbf{V}, \ldots
 $$
 In the [article](https://www.science.org/doi/10.1126/sciadv.1602614) 
-they propose an interesting *dictionary-based* approach to learning physical laws. The idea is to define a dictionary of plausible mathematical symbols that the model will combine linearly to construct formulas.<br>
+they propose an interesting \*dictionary-based\* approach to learning physical laws. The idea is to define a dictionary of plausible mathematical symbols that the model will combine linearly to construct formulas.<br>
 
 For example, let's suppose to apply this strategy to harmonic oscillator. We know that this dynamic is governed by:
 $$
@@ -1059,7 +1059,7 @@ $$
 $$
 and we want now to minimize the number of active terms in $\alpha$. The minimization problem becomes:
 $$
-\alpha^*=\underset{\alpha}{\arg \min }\|\partial\_{\mathbf{t}} \mathbf{u}\_{\mathbf{i}}-\mathbf{D}\_{\mathrm{i}} \alpha\|\_2+\|\alpha\|\_0
+\alpha^\*=\underset{\alpha}{\arg \min }\|\partial\_{\mathbf{t}} \mathbf{u}\_{\mathbf{i}}-\mathbf{D}\_{\mathrm{i}} \alpha\|\_2+\|\alpha\|\_0
 $$
 <br>
 
