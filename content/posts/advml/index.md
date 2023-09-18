@@ -720,7 +720,7 @@ A possible intuition about this phenomenon:
 - Case 3: $|\text{dataset}| << |\text{parameters}|$ The model can fit the data in many different ways, and regularization bias toward solutions that generalize well.
 
 ### Spectral bias
-![spectral\_bias](images/spectral\_bias.png) 
+![spectral\_bias](images/spectral_bias.png) 
 <br>
 <br>
 We start our analysis with **Spectral bias** which is the tendency of neural networks to learn functions that are smooth in the frequency domain. <br>
@@ -935,7 +935,7 @@ Thus some directions in the gradient are not allowed by the invariance of the lo
 
 **Learned weights and symmetry**
 As we have seen in the previous section data agumentation bias the loss function and consequently the gradient descent and the learned weights. The effect on the last is remarkably evident as we can see in the below picture:
-![symmetry](images/learned\_weights.png)
+![symmetry](images/learned_weights.png)
 <br>
 <br>
 In figure learned weights for, respectively, translation (a), rotation (b),
@@ -1030,7 +1030,7 @@ We then calculate the loss taking into account the error in the prediction and t
 The goal is to have the sparser mask that still allows the network to perform well on the task. <br> 
 The result of this procedure can be seen below:
 
-![feat\_viz](images/feat\_viz.png)
+![feat\_viz](images/feat_viz.png)
 <br>
 As we can see the elements on which the network is focusing are very different from the ones that we would have expected. The majority of the frequencies are killed and only very few are retained, this raises a possible risk of exploitation cause we can fool the network into misclassifying elements by constructing on purpose ambiguous images.<br>
 
