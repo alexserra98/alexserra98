@@ -13,7 +13,7 @@ Shallow learning (using kernel):
 - the model is $f(x) = \langle w , \phi(x) \rangle$
 
 Deep learning (using neural network):
-- the feature map is **compositional** $\phi(x)\\_{L} = \phi\\_{L} \circ \phi\{L-1} \circ ... \circ \phi\_{1}(x)$
+- the feature map is **compositional** $\phi(x)\_{L} = \phi\_{L} \circ \phi\{L-1} \circ ... \circ \phi\_{1}(x)$
 and it is **learned**
 - the model is $f(x) = \langle w , \phi(x)\_{L} \rangle$
 
@@ -23,29 +23,29 @@ $
 \mathcal{L}: \mathbb{R}^P \rightarrow \mathbb{R}\_{+}
 $ is defined as follow, using a per-sample cost function 
 
-$\ell: \mathbb{R}^{n\\_0} \times \mathbb{R}^{n\\_L} \rightarrow \mathbb{R}\\_{+}$ :
+$\ell: \mathbb{R}^{n\_0} \times \mathbb{R}^{n\_L} \rightarrow \mathbb{R}\_{+}$ :
 $$
 \mathcal{L}(\theta)=\frac{1}{N} \sum\_{i=1}^N \ell\left(f\left(\mathbf{x}^{(i)} ; \theta\right), y^{(i)}\right)
 $$,
 where $\theta$ is the parameter of the neural network, $f(x; \theta)$ is the output of the neural network, $\ell$ is the loss function, $x\_{i}$ is the input and $y\_{i}$ is the target
 using the chain rule the gradient is 
 $$
-\nabla\\_\theta \mathcal{L}(\theta)=\frac{1}{N} \sum\_{i=1}^N \underbrace{\nabla\\_\theta f\left(\mathbf{x}^{(i)} ; \theta\right)}\\_{\text {size } P \times n\_L} \underbrace{\nabla\\_f \ell\left(f, y^{(i)}\right)}\\_{\text {size } n\\_L \times 1}
+\nabla\_\theta \mathcal{L}(\theta)=\frac{1}{N} \sum\_{i=1}^N \underbrace{\nabla\_\theta f\left(\mathbf{x}^{(i)} ; \theta\right)}\_{\text {size } P \times n\_L} \underbrace{\nabla\_f \ell\left(f, y^{(i)}\right)}\_{\text {size } n\_L \times 1}
 $$ 
 When we perform a gradient descent update we introduce only a small increment in the weight for an infinitesimal step size for this reason we can approximately interpret the variation of the weights as:
 $$
-\frac{d \theta}{d t}=-\nabla\\_\theta \mathcal{L}(\theta)=-\frac{1}{N} \sum\\_{i=1}^N \nabla\\_\theta f\left(\mathbf{x}^{(i)} ; \theta\right) \nabla\\_f \ell\left(f, y^{(i)}\right)
+\frac{d \theta}{d t}=-\nabla\_\theta \mathcal{L}(\theta)=-\frac{1}{N} \sum\_{i=1}^N \nabla\_\theta f\left(\mathbf{x}^{(i)} ; \theta\right) \nabla\_f \ell\left(f, y^{(i)}\right)
 $$
 The solution of the ODE in the above expression is known as [*gradient flow*](https://statmech.stanford.edu/post/gradient\_flows\_01/) 
 When can use this result to derive an expression for the evolution of the network output:
 $$
-\frac{d f(\mathbf{x} ; \theta)}{d t}=\frac{d f(\mathbf{x} ; \theta)}{d \theta} \frac{d \theta}{d t}=-\frac{1}{N} \sum\\_{i=1}^N \underbrace{\nabla\\_\theta f(\mathbf{x} ; \theta)^{\top} \nabla\\_\theta f\left(\mathbf{x}^{(i)} ; \theta\right)}\\_{\text {Neural tangent kernel }} \nabla\\_f \ell\left(f, y^{(i)}\right)
+\frac{d f(\mathbf{x} ; \theta)}{d t}=\frac{d f(\mathbf{x} ; \theta)}{d \theta} \frac{d \theta}{d t}=-\frac{1}{N} \sum\_{i=1}^N \underbrace{\nabla\_\theta f(\mathbf{x} ; \theta)^{\top} \nabla\_\theta f\left(\mathbf{x}^{(i)} ; \theta\right)}\_{\text {Neural tangent kernel }} \nabla\_f \ell\left(f, y^{(i)}\right)
 $$ <
 Here we find the **Neural Tangent Kernel** which is defined as 
 $$
-K\left(\mathbf{x}, \mathbf{x}^{\prime} ; \theta\right)=\nabla\\_\theta f(\mathbf{x} ; \theta)^{\top} \nabla\\_\theta f\left(\mathbf{x}^{\prime} ; \theta\right)
+K\left(\mathbf{x}, \mathbf{x}^{\prime} ; \theta\right)=\nabla\_\theta f(\mathbf{x} ; \theta)^{\top} \nabla\_\theta f\left(\mathbf{x}^{\prime} ; \theta\right)
 $$
-and the associated feature map is $\phi(x) = \nabla\\_{\theta} f(x; \theta)$ <br>
+and the associated feature map is $\phi(x) = \nabla\_{\theta} f(x; \theta)$ <br>
 The key point is the network is approaching infinite width, the NTK converges to be:
 
 1. deterministic at initialization, meaning that the kernel is irrelevant to the initialization values and only determined by the model architecture;
@@ -55,30 +55,30 @@ With this setup, we  express the evolution of the network output as:
 
 In order to track the evolution of $\theta$ time we can simplify our model by linearizing it:
 $$
-f(\theta(t)) \approx f^{\operatorname{lin}}(\theta(t))=f(\theta(0))+\underbrace{\nabla\\_\theta f(\theta(0))}\\_{\text {formally }\left.\nabla\\_\theta f(\mathbf{x} ; \theta)\right|\\_{\theta=\theta(0)}}(\theta(t)-\theta(0))
+f(\theta(t)) \approx f^{\operatorname{lin}}(\theta(t))=f(\theta(0))+\underbrace{\nabla\_\theta f(\theta(0))}\_{\text {formally }\left.\nabla\_\theta f(\mathbf{x} ; \theta)\right|\_{\theta=\theta(0)}}(\theta(t)-\theta(0))
 $$
 and then we can perform the following analysis:
 $$
 \begin{aligned}
-\theta(t)-\theta(0) & =-\eta \nabla\\_\theta \mathcal{L}(\theta)=-\eta \nabla\\_\theta f(\theta)^{\top} \nabla\\_f \mathcal{L} \\\
-f^{\operatorname{lin}}(\theta(t))-f(\theta(0)) & =-\eta \nabla\\_\theta f(\theta(0))^{\top} \nabla\\_\theta f(\mathcal{X} ; \theta(0)) \nabla\\_f \mathcal{L} \\\
-\frac{d f(\theta(t))}{d t} & =-\eta K(\theta(0)) \nabla\\_f \mathcal{L} \\\
-\frac{d f(\theta(t))}{d t} & =-\eta K\\_{\infty} \nabla\\_f \mathcal{L}
+\theta(t)-\theta(0) & =-\eta \nabla\_\theta \mathcal{L}(\theta)=-\eta \nabla\_\theta f(\theta)^{\top} \nabla\_f \mathcal{L} \\\
+f^{\operatorname{lin}}(\theta(t))-f(\theta(0)) & =-\eta \nabla\_\theta f(\theta(0))^{\top} \nabla\_\theta f(\mathcal{X} ; \theta(0)) \nabla\_f \mathcal{L} \\\
+\frac{d f(\theta(t))}{d t} & =-\eta K(\theta(0)) \nabla\_f \mathcal{L} \\\
+\frac{d f(\theta(t))}{d t} & =-\eta K\_{\infty} \nabla\_f \mathcal{L}
 \end{aligned}
 $$
 ; for infinite width network
-If the empirical loss is defined as $\nabla\\_\theta \mathcal{L}(\theta)=f(\mathcal{X} ; \theta)-\mathcal{Y}$ we can solve the differential equation and obtain the following result: 
+If the empirical loss is defined as $\nabla\_\theta \mathcal{L}(\theta)=f(\mathcal{X} ; \theta)-\mathcal{Y}$ we can solve the differential equation and obtain the following result: 
 $$
 \begin{aligned}
-\frac{d f(\theta)}{d t} & =-\eta K\\_{\infty}(f(\theta)-\mathcal{Y}) \\
-\frac{d g(\theta)}{d t} & =-\eta K\\_{\infty} g(\theta) \quad ; \text { let } g(\theta)=f(\theta)-\mathcal{Y} \\
-\int \frac{d g(\theta)}{g(\theta)} & =-\eta \int K\\_{\infty} d t \\
-g(\theta) & =C e^{-\eta K\\_{\infty} t}
+\frac{d f(\theta)}{d t} & =-\eta K\_{\infty}(f(\theta)-\mathcal{Y}) \\
+\frac{d g(\theta)}{d t} & =-\eta K\_{\infty} g(\theta) \quad ; \text { let } g(\theta)=f(\theta)-\mathcal{Y} \\
+\int \frac{d g(\theta)}{g(\theta)} & =-\eta \int K\_{\infty} d t \\
+g(\theta) & =C e^{-\eta K\_{\infty} t}
 \end{aligned}
 $$
 and then get:
 $$
-f(\theta)=(f(\theta(0))-\mathcal{Y}) e^{-\eta K\\_{\infty} t}+\mathcal{Y}=f(\theta(0)) e^{-K\\_{\infty} t}+\left(I-e^{-\eta K\\_{\infty} t}\right) \mathcal{Y}
+f(\theta)=(f(\theta(0))-\mathcal{Y}) e^{-\eta K\_{\infty} t}+\mathcal{Y}=f(\theta(0)) e^{-K\_{\infty} t}+\left(I-e^{-\eta K\_{\infty} t}\right) \mathcal{Y}
 $$
 
 These results hold for infinite network width, because the change in parameters is infinitesimal, and we can employ the linearization of the model. <br>
@@ -86,8 +86,8 @@ In practice we the taylor expansion is accurate in a specific regime called **la
 
 ### Universal approximation theorem
 Any continuous function defined in a n-dimensional unit hypercube may be approximated by a finite sum of the type:
-$\sum\\_{j=1}^N v\\_j \varphi\left(\vec{\omega}^{(j)} \cdot \vec{x}+b\\_j\right)$
-wherein $v\\_j, b\\_j \in \mathbb{R}, \vec{\omega}^{(j)} \in \mathbb{R}^n$ and $\phi$ is continuoi discriminatory function.
+$\sum\_{j=1}^N v\_j \varphi\left(\vec{\omega}^{(j)} \cdot \vec{x}+b\_j\right)$
+wherein $v\_j, b\_j \in \mathbb{R}, \vec{\omega}^{(j)} \in \mathbb{R}^n$ and $\phi$ is continuoi discriminatory function.
 
 ## Regularization
 A key concept that motivates the usage of regolarization is called: the *manifold hypothesis*. Quoting [wikipedia](https://en.wikipedia.org/wiki/Manifold\_hypothesis)
@@ -214,7 +214,7 @@ If we train our model with this setting and using *gradient descent* what we obs
 There's a conjecture associated to this problem:
 > With $U(0) \rightarrow 0$, the flow $\dot{U} = - \nabla \| A(UU^{T}) -y \|^{2}$ converge to the minimum nuclear norm solution:
 $$
-U(\infty) U(\infty)^{\top} \rightarrow \min \\_{W \geqslant 0}\|W\|\_* \text { s.t. }\left\langle A\_i, W\right\rangle=y\_i
+U(\infty) U(\infty)^{\top} \rightarrow \min \_{W \geqslant 0}\|W\|\_* \text { s.t. }\left\langle A\_i, W\right\rangle=y\_i
 $$
 [paper](https://papers.nips.cc/paper\_files/paper/2017/hash/58191d2a914c6dae66371c9dcdc91b41-Abstract.html)
 
@@ -237,7 +237,7 @@ V\_2^{\top}
 $$
 The **least-norm** solution of $Ax = b$ is given by:
 $$
-\mathrm{x}\\_{\mathrm{LN}}:=\mathrm{A}^{\top}\left(\mathrm{AA}^{\top}\right)^{-1} \mathrm{~b}=\cdots=\mathrm{V}\_1 \Sigma\_1^{-1} \mathrm{U}^{\top} \mathrm{b}
+\mathrm{x}\_{\mathrm{LN}}:=\mathrm{A}^{\top}\left(\mathrm{AA}^{\top}\right)^{-1} \mathrm{~b}=\cdots=\mathrm{V}\_1 \Sigma\_1^{-1} \mathrm{U}^{\top} \mathrm{b}
 $$
 where the inverse of $\mathbf{A A}^{\top}$ exists because of $A$ has full row rank. <br>
 
@@ -252,13 +252,13 @@ $$
 Using gradient descent with steps $\mu > 0$,
 $$
 \begin{aligned}
-\mathrm{x}\\_{k+1} & =\mathrm{x}\\_k-\mu \nabla f\left(\mathrm{x}\\_k\right) \\\
-& =\left(\mathrm{I}-\mu \mathrm{A}^{\top} \mathrm{A}\right) \mathrm{x\}\\_k+\mu \mathrm{A}^{\top} \mathrm{b}
+\mathrm{x}\_{k+1} & =\mathrm{x}\_k-\mu \nabla f\left(\mathrm{x}\_k\right) \\\
+& =\left(\mathrm{I}-\mu \mathrm{A}^{\top} \mathrm{A}\right) \mathrm{x\}\_k+\mu \mathrm{A}^{\top} \mathrm{b}
 \end{aligned}
 $$
 Hence,
 $$
-\mathrm{x}\\_k=\left(\mathrm{I}-\mu \mathrm{A}^{\top} \mathrm{A}\right)^k \mathrm{x}\\_0+\mu \sum\_{\ell=0}^{k-1}\left(\mathrm{I}-\mu \mathrm{A}^{\top} \mathrm{A}\right)^{\ell} \mathrm{A}^{\top} \mathrm{b}
+\mathrm{x}\_k=\left(\mathrm{I}-\mu \mathrm{A}^{\top} \mathrm{A}\right)^k \mathrm{x}\_0+\mu \sum\_{\ell=0}^{k-1}\left(\mathrm{I}-\mu \mathrm{A}^{\top} \mathrm{A}\right)^{\ell} \mathrm{A}^{\top} \mathrm{b}
 $$
 Letting 
 $$
@@ -426,7 +426,7 @@ $$
 $$
 \begin{aligned}
 \omega(t+\epsilon) & =\omega(t)+\epsilon \tilde{f}(\omega(t))+\left(\epsilon^2 / 2 \right) \nabla \tilde{f}(\omega(t)) \tilde{f}(\omega(t))+O(\epsilon^3) \\\
-\& =\underbrace{\omega(t)+\epsilon f(\omega(t))}\\_{\text {Euler step }}+\epsilon^2(\underbrace{.f\_1(\omega(t))+(1 / 2) \nabla f(\omega(t)) f(\omega(t))})\\_{\begin{array}{c}
+\& =\underbrace{\omega(t)+\epsilon f(\omega(t))}\_{\text {Euler step }}+\epsilon^2(\underbrace{.f\_1(\omega(t))+(1 / 2) \nabla f(\omega(t)) f(\omega(t))})\_{\begin{array}{c}
 \text { Set higher order } \\\
 \text { terms to zero }
 \end{array}}+O(\epsilon^3) 
@@ -459,8 +459,8 @@ Putting everything together we have that for a finite small learning rate:
 
 $$
 \begin{aligned}
-& \dot{\omega}=-\nabla \widetilde{C}\\_{G D}(\omega)+O\left(\epsilon^2\right) \\\
-& \widetilde{C}\\_{G D}(\omega)=\underbrace{C(\omega)}\\_{\text{Original Loss}}+\underbrace{(\epsilon / 4)\|\nabla C(\omega)\|^2}\\_{Regularization}
+& \dot{\omega}=-\nabla \widetilde{C}\_{G D}(\omega)+O\left(\epsilon^2\right) \\\
+& \widetilde{C}\_{G D}(\omega)=\underbrace{C(\omega)}\_{\text{Original Loss}}+\underbrace{(\epsilon / 4)\|\nabla C(\omega)\|^2}\_{Regularization}
 \end{aligned}
 $$
 We provide an informal intution on why this is happening:
@@ -480,11 +480,11 @@ We now want to rewrite the SGD update rule taking into account random shuffling 
 $N$ is the number of samples, $B$ size of the batch, $m = \frac{N}{B}$
 is the number of updates per epoch, we define the loss over a mini-batch:
 $$
-\hat{C}\\_i=(1 / B) \sum\\_{j=i B+1}^{(i+1) B} C\\_j(\omega)
+\hat{C}\_i=(1 / B) \sum\_{j=i B+1}^{(i+1) B} C\_j(\omega)
 $$
 and get the following update rule:
 $$
-\omega\\_{i+1}=\omega\\_i-\epsilon \nabla \hat{C}\\_{i \mbox{mod} m}(\omega)
+\omega\_{i+1}=\omega\_i-\epsilon \nabla \hat{C}\_{i \mbox{mod} m}(\omega)
 $$
 (with a shuffle every $\mathrm{m}$ updates) <br>
 The module operation at the index is just to enforce that every example appears exactly once per epoch (no overlap between batches).
@@ -666,21 +666,21 @@ networks. If we simplify our problem by excluding non-linear activation function
 We indicate a linear predictor as $\beta \in \mathbb{R}^{D}$ and define the map $\mathcal{P}: \mathcal{W} \rightarrow \mathbb{R}^D$ which sends a set of weights in the corresponding linear predictor.
 In the case of a binary classification task using logistic loss the global minimum of a loss $\mathcal{L}(\dot)$  defined as 
 $$
-\min\\_{\mathbf{w} \in \mathcal{W}} \mathcal{L\}\\_{\mathcal{P}}(\mathbf{w}):=\sum^N \ell\left(\left\langle\mathbf{x}\\_n, \mathcal{P}(\mathbf{w})\right\rangle, y\\_n\right)
+\min\_{\mathbf{w} \in \mathcal{W}} \mathcal{L\}\_{\mathcal{P}}(\mathbf{w}):=\sum^N \ell\left(\left\langle\mathbf{x}\_n, \mathcal{P}(\mathbf{w})\right\rangle, y\_n\right)
 $$
-can't be achieved for any finite $\beta$. To overcome this problem the loss can be minimized by scaling the norm of any linear predictor that separates the data to infinity, focusing then on the direction $\overline{\boldsymbol{\beta}}^{\infty}=\lim \\_{t \rightarrow \infty} \frac{\boldsymbol{\beta}^{(t)}}{\left\|\boldsymbol{\beta}^{(t)}\right\|}$ <br>
+can't be achieved for any finite $\beta$. To overcome this problem the loss can be minimized by scaling the norm of any linear predictor that separates the data to infinity, focusing then on the direction $\overline{\boldsymbol{\beta}}^{\infty}=\lim \_{t \rightarrow \infty} \frac{\boldsymbol{\beta}^{(t)}}{\left\|\boldsymbol{\beta}^{(t)}\right\|}$ <br>
 Under some assumptions described in the paper, the authors prove that:
 For any depth L, almost all linearly separable
-datasets $\{ x\\_{n}, y\\_{n} \}^{N}\\_{n=1}$ almost all initializations $w^{(0)}$, , and any bounded sequence of step sizes $\{\eta\\_{t}\}\\_{t}$, consider the sequence gradient descent iterates $w^{(t)}$  defined as:
+datasets $\{ x\_{n}, y\_{n} \}^{N}\_{n=1}$ almost all initializations $w^{(0)}$, , and any bounded sequence of step sizes $\{\eta\_{t}\}\_{t}$, consider the sequence gradient descent iterates $w^{(t)}$  defined as:
 $$
 \mathbf{w}^{(t+1)}=\mathbf{w}^{(t)}-\eta\_t \nabla\_{\mathbf{w}} \mathcal{L}\_{\mathcal{P}}\left(\mathbf{w}^{(t)}\right)=\mathbf{w}^{(t)}-\eta\_t \nabla\_{\mathbf{w}} \mathcal{P}\left(\mathbf{w}^{(t)}\right) \nabla\_{\boldsymbol{\beta}} \mathcal{L}(\mathcal{P}(\mathbf{w}(t)))
 $$
 for minimizing $\mathcal{L}\_{\mathcal{P}\_{\text{full}}}(\mathbf{w})$ as described above  with exponential loss $\ell(\widehat{y}, y)=\exp (-\widehat{y} y)$  over L–layer fully connected linear networks. <br>
 
-If  the iterates $w^{(t)}$ minimize the objective, i.e., $\mathcal{L}\\_{\mathcal{P}\\_{\text{full}}}(w(t)) \rightarrow 0$,  $w(t)$, and consequently $\beta^{(t)} = \mathcal{P}\\_{\text{full}}(w(t))$, converge in direction to yield a separator with positive margin, and  gradients
+If  the iterates $w^{(t)}$ minimize the objective, i.e., $\mathcal{L}\_{\mathcal{P}\_{\text{full}}}(w(t)) \rightarrow 0$,  $w(t)$, and consequently $\beta^{(t)} = \mathcal{P}\_{\text{full}}(w(t))$, converge in direction to yield a separator with positive margin, and  gradients
 concerning linear predictors ∇βL(β(t)) converge in direction, and then the limit direction is given by
 $$
-\overline{\boldsymbol{\beta}}^{\infty}=\lim \\_{t \rightarrow \infty} \frac{\mathcal{P}\\_{\text {full }}\left(\mathbf{w}^{(t)}\right)}{\left\|\mathcal{P}\\_{\text {full }}\left(\mathbf{w}^{(t)}\right)\right\|}=\frac{\boldsymbol{\beta}\\_{\ell\\_2}^*}{\left\|\boldsymbol{\beta}\\_{\ell\_0}^*\right\|} \text {, where } \boldsymbol{\beta}\\_{\ell\_2}^*:=\underset{w}{\operatorname{argmin}}\|\boldsymbol{\beta}\|\_2^2 \quad \text { s.t. } \forall n, y\_n\left\langle\mathbf{x}\_n, \boldsymbol{\beta}\right\rangle \geq 1
+\overline{\boldsymbol{\beta}}^{\infty}=\lim \_{t \rightarrow \infty} \frac{\mathcal{P}\_{\text {full }}\left(\mathbf{w}^{(t)}\right)}{\left\|\mathcal{P}\_{\text {full }}\left(\mathbf{w}^{(t)}\right)\right\|}=\frac{\boldsymbol{\beta}\_{\ell\_2}^*}{\left\|\boldsymbol{\beta}\_{\ell\_0}^*\right\|} \text {, where } \boldsymbol{\beta}\_{\ell\_2}^*:=\underset{w}{\operatorname{argmin}}\|\boldsymbol{\beta}\|\_2^2 \quad \text { s.t. } \forall n, y\_n\left\langle\mathbf{x}\_n, \boldsymbol{\beta}\right\rangle \geq 1
 $$
 
 This theorem that the implicti bias of gradient descent doesn't depend on the depth of the net. Remarkably the asymptotic
@@ -754,7 +754,7 @@ e^{-\lambda\_1 t} & & & \\
 \end{array}\right] \mathcal{Y}
 $$
 
-The above equation shows that the convergence rate of $\boldsymbol{q}\\_i^T\left(f\left(\mathcal{X}, \boldsymbol{\theta}(t)\right)-\mathcal{Y} \right)$ is determined by the i-th eigenvalue
+The above equation shows that the convergence rate of $\boldsymbol{q}\_i^T\left(f\left(\mathcal{X}, \boldsymbol{\theta}(t)\right)-\mathcal{Y} \right)$ is determined by the i-th eigenvalue
 $\lambda\_{i}$. Moreover, we can decompose the training error into the eigenspace of the NTK as
 $$
 \begin{aligned}
@@ -954,7 +954,7 @@ ASK TO ANSELMI I don't understand it
 in the paper [DeepSets](https://arxiv.org/pdf/1703.06114.pdf) the authors provide some theoretical understanding for designing a permutational equivarian layer.<br>
 Using the definition of equivariance provided before let's define a neural network layer as:
 $$
-\mathrm{f}\\_{\Theta}(\mathbf{x}) \doteq \sigma(\Theta \mathbf{x}) \quad \Theta \in \mathbb{R}^{M \times M}
+\mathrm{f}\_{\Theta}(\mathbf{x}) \doteq \sigma(\Theta \mathbf{x}) \quad \Theta \in \mathbb{R}^{M \times M}
 $$
 where $\Theta$ is a weight vector and $\sigma$ is a non-linear activation function. The following lemma presented in the paper suggests a sufficient conditions for permutations-equivariance in this type of functions 
 **Lemma 3** The function $\mathbf{f}\_{\Theta}: \mathbb{R}^M \rightarrow \mathbb{R}^M$ as defined above is permutation equivariant if and only if all the off-diagonal elements of $\Theta$ are tied together and all the diagonal elements are equal as well:
@@ -1052,7 +1052,7 @@ For example, let's suppose to apply this strategy to harmonic oscillator. We kno
 $$
 \left(\partial\_t-\omega^2 \partial\_{x x}\right) u \equiv L u=0
 $$
-Thus we want to infer the $L$ in the problem using a set of observations: $\{u((x, t)\\_i) \equiv u\_i}\\_{i=1}^N$.
+Thus we want to infer the $L$ in the problem using a set of observations: $\{u((x, t)\_i) \equiv u\_i}\_{i=1}^N$.
 We proceed to define a dictionary of symbols:
 $$
 \partial\_t u=\{1, u, u^2, u\_x, u\_x^2, u u\_x, u\_{x x}, u\_{x x}^2, u u\_{x x}, u\_x, u\_{x x}} \alpha=D \alpha
