@@ -402,7 +402,7 @@ $$
 \dot{\omega}=f(\omega)
 \end{gathered}
 $$
-![step\_off](images/step\_off.png  "prova") <br>
+![step\_off](images/step_off.png  "prova") <br>
 <br>
 If we follow the steps of Euler update we can see that this approximation scheme introduces a bias at each step and soon the trajectory of the discrete updates will step off from the actual solution.
 <br> 
@@ -1063,6 +1063,10 @@ $$
 $$
 <br>
 
+
+<!---
+
+### tmp
 possible idea to make the network think more like humans, analyze ECG of patients looking at photos and use a net to extrapolate the frequencies that are most important for our brain then filter images using these frequencies and see what happens
 
 we can do the same with optical illusion, and try to find out which frequencies are responsible for the illusion
@@ -1070,9 +1074,6 @@ we can do the same with optical illusion, and try to find out which frequencies 
 unfortunately, lots of priors are not the best choice
 what's the invariance version of the kernel?(possible project)
 29 march qa
-<!---
-
-### tmp
 weights are very sparse in fourier
 what's the bias that I'm introducing adding convolution and pooling
 in the proof of invariance use the fact that the network is invariant to permutation of output
