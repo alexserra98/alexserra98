@@ -14,9 +14,9 @@ Shallow learning (using kernel):
 
 Deep learning (using neural network):
 - the feature map is **compositional** 
-{{</* math */>}} 
+{{ .Inner }} 
 $$\phi(x)_{L} = \phi_{L} \circ \phi_{L-1} \circ ... \circ \phi_{1}(x)$$
-{{</* /math */>}} 
+{{ /.Inner }} 
 and it is **learned**
 - the model is $f(x) = \langle w , \phi(x)_{L} \rangle$
 
