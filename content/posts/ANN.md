@@ -2,7 +2,7 @@
 title: "Advanced Topics in Machine Learning - Notes"
 date: 2023-09-18T11:30:03+00:00
 weight: 1
-math: mathjax
+math: katex
 ---
 
 This is the first of a series of posts that collects notes from the course [advaced topics in machine learning]("https://dssc.units.it/advanced-topics-machine-learning"). If you find any mistakes or I've forgotten to cite you feel free to reach out!
@@ -15,7 +15,7 @@ Shallow learning (using kernel):
 Deep learning (using neural network):
 - the feature map is **compositional** 
 
-$\phi(x)_{L} = \phi_{L} \circ \phi_{L-1} \circ ... \circ \phi_{1}(x)$$
+$\phi(x)\_{L} = \phi\_{L} \circ \phi\_{L-1} \circ ... \circ \phi\_{1}(x)$
 
 and it is **learned**
 - the model is $f(x) = \langle w , \phi(x)_{L} \rangle$
