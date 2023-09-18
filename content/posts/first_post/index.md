@@ -401,7 +401,7 @@ $$
 \dot{\omega}=f(\omega)
 \end{gathered}
 $$
-![step_off](images/step_off.png) <br>
+![step_off](/posts/first_post/images/step_off.png) <br>
 <br>
 If we follow the steps of Euler update we can see that this approximation scheme introduces a bias at each step and soon the trajectory of the discrete updates will step off from the actual solution.
 <br> 
