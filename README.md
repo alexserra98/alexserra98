@@ -1,7 +1,7 @@
 ### <div align="center"><👋 Hello World! I'm Alex></div>  
   
 
-- Student of Data Science and Artificial Intelligence @ University of Trieste  
+- Grad student of Data Science and Artificial Intelligence @ University of Trieste  
   
 
 <br/>  
