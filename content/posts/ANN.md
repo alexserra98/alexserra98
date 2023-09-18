@@ -15,7 +15,7 @@ Shallow learning (using kernel):
 Deep learning (using neural network):
 - the feature map is **compositional** 
 
-$\phi(x)\_{L} = \phi\_{L} \circ \phi\_{L-1} \circ ... \circ \phi\_{1}(x)$
+$\phi(x)_{L} = \phi\_{L} \circ \phi\{L-1} \circ ... \circ \phi_{1}(x)$
 
 and it is **learned**
 - the model is $f(x) = \langle w , \phi(x)_{L} \rangle$
@@ -401,7 +401,7 @@ $$
 \dot{\omega}=f(\omega)
 \end{gathered}
 $$
-![step_off](/content/images/step_off.png) <br>
+![step_off](step_off.png) <br>
 <br>
 If we follow the steps of Euler update we can see that this approximation scheme introduces a bias at each step and soon the trajectory of the discrete updates will step off from the actual solution.
 <br> 
@@ -594,14 +594,14 @@ what we see now is that Lare bare learning rates \alpha are actually beneficial 
 <br>
 
 **Closing Remarks on gradient descent**
-![sgd1](/content/images/robust-sgd0.png) <br>
+![sgd1](robust-sgd0.png) <br>
 <br>
 The goal of an optimization algorithm is to converge to *good* minima that behaves well in terms of:
 - robustness
 - generalization
 
 Both the train-set and test-set are sampled from the same distribution, and for this reason, we expect the train loss function to be very close to the test loss function. What we want is to find a shape of the loss that is robust to small perturbations (that comes from training different samples but from the same distribution). There's an ongoing debate regarding the geometry of these shapes, but a generally accepted idea is that a function with a *flat* minima can provide robustness and generalization.  <br>
-![sgd2](/content/images/robust-sgd.png) <br>
+![sgd2](robust-sgd.png) <br>
 <br>
 <!---
 (Not sure rewatch march 22 29.45)
@@ -715,7 +715,7 @@ A possible intuition about this phenomenon:
 - Case 3: $|\text{dataset}| << |\text{parameters}|$ The model can fit the data in many different ways, and regularization bias toward solutions that generalize well.
 
 ### Spectral bias
-![spectral_bias](/content/images/spectral_bias.png) 
+![spectral_bias](spectral_bias.png) 
 <br>
 <br>
 We start our analysis with **Spectral bias** which is the tendency of neural networks to learn functions that are smooth in the frequency domain. <br>
@@ -930,7 +930,7 @@ Thus some directions in the gradient are not allowed by the invariance of the lo
 
 **Learned weights and symmetry**
 As we have seen in the previous section data agumentation bias the loss function and consequently the gradient descent and the learned weights. The effect on the last is remarkably evident as we can see in the below picture:
-![symmetry](/content/images/learned_weights.png)
+![symmetry](learned_weights.png)
 <br>
 <br>
 In figure learned weights for, respectively, translation (a), rotation (b),
@@ -1026,7 +1026,7 @@ We then calculate the loss taking into account the error in the prediction and t
 The goal is to have the sparser mask that still allows the network to perform well on the task. <br> 
 The result of this procedure can be seen below:
 
-![feat_viz](/content/images/feat_viz.png)
+![feat_viz](feat_viz.png)
 <br>
 As we can see the elements on which the network is focusing are very different from the ones that we would have expected. The majority of the frequencies are killed and only very few are retained, this raises a possible risk of exploitation cause we can fool the network into misclassifying elements by constructing on purpose ambiguous images.<br>
 
