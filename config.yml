@@ -10,7 +10,7 @@ buildFuture: false
 buildExpired: false
 enableEmoji: true
 pygmentsUseClasses: true
-math: true
+
 # googleAnalytics: UA-123-45
 
 minify:
@@ -77,7 +77,7 @@ params:
     ShowToc: true
     # comments: false
     images: ["papermod-cover.png"]
-
+    math: true
 
     profileMode:
         enabled: true
