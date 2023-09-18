@@ -2,7 +2,7 @@
 title: "Advanced Topics in Machine Learning - Notes"
 date: 2023-09-18T11:30:03+00:00
 weight: 1
-math: true
+math: katex
 ---
 
 This is the first of a series of posts that collects notes from the course [advaced topics in machine learning]("https://dssc.units.it/advanced-topics-machine-learning"). If you find any mistakes or I've forgotten to cite you feel free to reach out!
@@ -13,7 +13,12 @@ Shallow learning (using kernel):
 - the model is $f(x) = \langle w , \phi(x) \rangle$
 
 Deep learning (using neural network):
-- the feature map is **compositional** $\phi(x)_{L}$ = $\phi_{L} \circ \phi_{L-1} \circ ... \circ \phi_{1}(x)$ and it is **learned**
+- the feature map is **compositional** 
+{{< math >}} 
+$$\phi(x)_{L} = \phi_{L} \circ \phi_{L-1} \circ ... \circ \phi_{1}(x)$$
+ 
+{{< math >}} 
+and it is **learned**
 - the model is $f(x) = \langle w , \phi(x)_{L} \rangle$
 
 The link between the two models is *Neural Tangent Kernel* (NTK), the mathematical details can be found at [ntk](https://lilianweng.github.io/posts/2022-09-08-ntk/), here we limit to provide the intuition behind it. <br>
