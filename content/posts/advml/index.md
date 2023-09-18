@@ -785,7 +785,7 @@ for a deeper understanding of the math background, we refer to [Understanding th
 
 
 ## Invariance and Equivariance
-In this section, we will introduce two concepts that will be crucial for the following posts of this series of notes: the concept of invariance and equivariance. We will show then their connection with some architectural bias introduced by pooling and convolution <br>
+In this section, we will introduce two concepts that will be crucial for the following posts of this series of notes: the concept of invariance and equivariance.We will show then their connection with some architectural bias introduced by pooling and convolution <br>
 Given a function $f: A \rightarrow A $ and a group $G$ acting on $A$
 we call $f$:
 - **invariant**:  if $f(gx)=f(x)$ for all $g \in G$ and $x \in A$
