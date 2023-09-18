@@ -401,7 +401,7 @@ $$
 \dot{\omega}=f(\omega)
 \end{gathered}
 $$
-![step_off](step_off.png) <br>
+![step_off](/content/posts/step_off.png) <br>
 <br>
 If we follow the steps of Euler update we can see that this approximation scheme introduces a bias at each step and soon the trajectory of the discrete updates will step off from the actual solution.
 <br> 
@@ -930,7 +930,7 @@ Thus some directions in the gradient are not allowed by the invariance of the lo
 
 **Learned weights and symmetry**
 As we have seen in the previous section data agumentation bias the loss function and consequently the gradient descent and the learned weights. The effect on the last is remarkably evident as we can see in the below picture:
-![symmetry](learned_weights.png)
+![symmetry](/learned_weights.png)
 <br>
 <br>
 In figure learned weights for, respectively, translation (a), rotation (b),
@@ -1026,7 +1026,7 @@ We then calculate the loss taking into account the error in the prediction and t
 The goal is to have the sparser mask that still allows the network to perform well on the task. <br> 
 The result of this procedure can be seen below:
 
-![feat_viz](feat_viz.png)
+![feat_viz](/feat_viz.png)
 <br>
 As we can see the elements on which the network is focusing are very different from the ones that we would have expected. The majority of the frequencies are killed and only very few are retained, this raises a possible risk of exploitation cause we can fool the network into misclassifying elements by constructing on purpose ambiguous images.<br>
 
