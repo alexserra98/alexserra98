@@ -1002,7 +1002,7 @@ A possible intuition about this phenomenon:</p>
 <li>Case 3: $|\text{dataset}| &laquo; |\text{parameters}|$ The model can fit the data in many different ways, and regularization bias toward solutions that generalize well.</li>
 </ul>
 <h3 id="spectral-bias">Spectral bias<a hidden class="anchor" aria-hidden="true" href="#spectral-bias">#</a></h3>
-<p><img loading="lazy" src="images/spectral%5c_bias.png" alt="spectral_bias"  />
+<p><img loading="lazy" src="images/spectral_bias.png" alt="spectral_bias"  />
 
 <br>
 <br>
@@ -1200,7 +1200,7 @@ Thus some directions in the gradient are not allowed by the invariance of the lo
 <br></p>
 <p><strong>Learned weights and symmetry</strong>
 As we have seen in the previous section data agumentation bias the loss function and consequently the gradient descent and the learned weights. The effect on the last is remarkably evident as we can see in the below picture:
-<img loading="lazy" src="images/learned%5c_weights.png" alt="symmetry"  />
+<img loading="lazy" src="images/learned_weights.png" alt="symmetry"  />
 
 <br>
 <br>
@@ -1295,7 +1295,7 @@ Then we create a mask that has to be trained to filter the most important freque
 We then calculate the loss taking into account the error in the prediction and the sparsity of the mask. <br>
 The goal is to have the sparser mask that still allows the network to perform well on the task. <br> 
 The result of this procedure can be seen below:
-<p><img loading="lazy" src="images/feat%5c_viz.png" alt="feat_viz"  />
+<p><img loading="lazy" src="images/feat_viz.png" alt="feat_viz"  />
 
 <br>
 As we can see the elements on which the network is focusing are very different from the ones that we would have expected. The majority of the frequencies are killed and only very few are retained, this raises a possible risk of exploitation cause we can fool the network into misclassifying elements by constructing on purpose ambiguous images.<br></p>
