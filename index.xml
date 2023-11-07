@@ -10,9 +10,19 @@
       <link>https://alexserra98.github.io/alexserra98/papermod-cover.png</link>
     </image>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Mon, 18 Sep 2023 11:30:03 +0000</lastBuildDate><atom:link href="https://alexserra98.github.io/alexserra98/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 06 Nov 2023 11:30:03 +0000</lastBuildDate><atom:link href="https://alexserra98.github.io/alexserra98/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>Advanced Topics in Machine Learning - Notes</title>
+      <title>Advanced Topics in Machine Learning - Notes part 2</title>
+      <link>https://alexserra98.github.io/alexserra98/posts/rep_learning/</link>
+      <pubDate>Mon, 06 Nov 2023 11:30:03 +0000</pubDate>
+      
+      <guid>https://alexserra98.github.io/alexserra98/posts/rep_learning/</guid>
+      <description>Include brain score??
+It&amp;rsquo;s surprising how brain is able to recognize objects regardless of their position, scale, rotation, and illumination. The intuitive fact that the brain is able to recognize some persistent or invariant characteristics that identify an object is the concpet of at basis of the following notes. The idea is that our visual cortex and up to some degree the ANN used in computer vision are able to recognize objects by learning a set of invariant representations of the input.</description>
+    </item>
+    
+    <item>
+      <title>Advanced Topics in Machine Learning - Notes part 1</title>
       <link>https://alexserra98.github.io/alexserra98/posts/advml/</link>
       <pubDate>Mon, 18 Sep 2023 11:30:03 +0000</pubDate>
       
