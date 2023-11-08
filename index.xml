@@ -12,21 +12,31 @@
     <generator>Hugo -- gohugo.io</generator>
     <lastBuildDate>Mon, 06 Nov 2023 11:30:03 +0000</lastBuildDate><atom:link href="https://alexserra98.github.io/alexserra98/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>Advanced Topics in Machine Learning - Notes part 2</title>
-      <link>https://alexserra98.github.io/alexserra98/posts/rep_learning/</link>
+      <title>Advanced Topics in Machine Learning - Notes part 3</title>
+      <link>https://alexserra98.github.io/alexserra98/posts/advml_3/</link>
       <pubDate>Mon, 06 Nov 2023 11:30:03 +0000</pubDate>
       
-      <guid>https://alexserra98.github.io/alexserra98/posts/rep_learning/</guid>
-      <description>Include brain score??
-It&amp;rsquo;s surprising how brain is able to recognize objects regardless of their position, scale, rotation, and illumination. The intuitive fact that the brain is able to recognize some persistent or invariant characteristics that identify an object is the concpet of at basis of the following notes. The idea is that our visual cortex and up to some degree the ANN used in computer vision are able to recognize objects by learning a set of invariant representations of the input.</description>
+      <guid>https://alexserra98.github.io/alexserra98/posts/advml_3/</guid>
+      <description>It&amp;rsquo;s surprising how the brain is able to recognize objects regardless of their position, scale, rotation, and illumination. The intuitive fact that the brain is able to recognize some persistent or invariant characteristics that identify an object is the concept at the basis of the following notes. The idea is that our visual cortex and up to some degree the ANN used in computer vision are able to recognize objects by learning a set of invariant representations of the input.</description>
+    </item>
+    
+    <item>
+      <title>Advanced Topics in Machine Learning - Notes part 2</title>
+      <link>https://alexserra98.github.io/alexserra98/posts/advml_2/</link>
+      <pubDate>Wed, 18 Oct 2023 11:30:03 +0000</pubDate>
+      
+      <guid>https://alexserra98.github.io/alexserra98/posts/advml_2/</guid>
+      <description>Regularization We continue our analysis of Regularization techniques: Batch normalization Quoting from Wikipedia: &amp;ldquo;Batch normalization (also known as batch norm) is a method used to make training of artificial neural networks faster and more stable through normalization of the layers&amp;rsquo; inputs by re-centering and re-scaling&amp;rdquo;
+Batch normalization is a very effective technique to justify its importance we report the following advantages listed in the article
+Networks train faster — Each training iteration will actually be slower because of the extra calculations during the forward pass and the additional hyperparameters to train during backpropagation.</description>
     </item>
     
     <item>
       <title>Advanced Topics in Machine Learning - Notes part 1</title>
-      <link>https://alexserra98.github.io/alexserra98/posts/advml/</link>
+      <link>https://alexserra98.github.io/alexserra98/posts/advml_1/</link>
       <pubDate>Mon, 18 Sep 2023 11:30:03 +0000</pubDate>
       
-      <guid>https://alexserra98.github.io/alexserra98/posts/advml/</guid>
+      <guid>https://alexserra98.github.io/alexserra98/posts/advml_1/</guid>
       <description>This is the first of a series of posts that collects notes from the course advaced topics in machine learning. If you find any mistakes or I&amp;rsquo;ve forgotten to cite you feel free to reach out!
 Neural Tangent Kernel We want to explicit the relationship between kernel methods and neural network: Shallow learning (using kernel):
 the feature map $\phi(x)$ is fixed the model is $f(x) = \langle w , \phi(x) \rangle$ Deep learning (using neural network):</description>
