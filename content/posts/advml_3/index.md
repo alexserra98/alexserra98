@@ -1,8 +1,8 @@
 ---
 title: "Advanced Topics in Machine Learning - Notes part 3"
 date: 2023-11-06T11:30:03+00:00
-weight: 1
 mathjax: true
+weight: 1
 editPost:
     URL: "https://alexserra98.github.io/alexserra98/posts/advml_3/"
     Text: "Suggest Changes" # edit text
@@ -16,9 +16,9 @@ It's surprising how the brain is able to recognize objects regardless of their p
 First of all, we lay out the mathematical foundation of the theory of invariant representations.
 Let's model a data space as a Hilbert space `$\mathcal{I}$` and denote by `$\langle\cdot, \cdot\rangle$` and `$\|\cdot\|$` is inner product and norm respectively. We consider a set of transformations over `$\mathcal{I}$` endowed with a group structure and we denoted it as 
 `$$
-\begin{align}
+\begin{equation}
 \mathcal{G} \subset\{g \mid g: \mathcal{I} \rightarrow \mathcal{I}\}
-\end{align}
+\end{equation}
 $$`
 we also define the group action `$(g,x) \rightarrow g \cdot x \in \mathcal{I}$` with abuse of notation as  `$gx$`.
 

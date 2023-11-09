@@ -199,7 +199,7 @@ We have a good understanding of this and it's linear in the number of parameters
 
 - Computation: In the general case finding the best parameters to fit a set of data is NP-hard. Even if consider functions that are perfectly representable by a single hidden layer network, with don't add noise and we larger network for the training, still the problem doesn't admit any poly-time algorithm <br>
 
-{{<figure align=center src="images/modern_ml.png" caption="Figure 1. The test keep decreasing instead manifest sign of overfitting">}}<br>
+{{<figure align=center src="images/modern_ml.png" caption="Figure 1. The test keep decreasing instead manifest sign of overfitting source:Neyshabur et al. https://arxiv.org/abs/1412.6614">}}<br>
 We observe a very strange fact at some point the train error is approximately zero and the test error is still decreasing, it means that the model is improving its estimation error even if we are using a model with way more parameters this does not make any sense, it means that we have to give better definition of the complexity of the model ( not just the number of parameters) <br>
 <br>
 
@@ -646,7 +646,7 @@ Connected Neural Networks https://arts.units.it/retrieve/856df9ab-4e98-4bab-b71e
 [17] Olah,Chris Mordvintsev,Alexander Schubert,Ludwig (nov 2017) Feature Visualization
 https://distill.pub/2017/feature-visualization/<br>
 [18] Rahaman et al. On the Spectral Bias of Neural Networks https://arxiv.org/pdf/1806.08734.pdf
-
+[19] Neyshabur et al. (apr 2015) In Search of the Real Inductive Bias: On the Role of Implicit Regularization in Deep Learning https://arxiv.org/abs/1412.6614
 <!---
 
 ### tmp
