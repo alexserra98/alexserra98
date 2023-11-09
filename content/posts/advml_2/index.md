@@ -4,7 +4,7 @@ date: 2023-10-18T11:30:03+00:00
 weight: 1
 mathjax: true
 editPost:
-    URL: "https://alexserra98.github.io/alexserra98/posts/advml_2/"
+    URL: "https://alexserra98.github.io/alexserra98/posts/advml_2h/"
     Text: "Suggest Changes" # edit text
     appendFilePath: true # to append file path to Edit link
 ---
@@ -95,14 +95,7 @@ $$`
 
 The result above shows if we introduce a convolutional layer, even without explicit regularization, gradient descent is implicitly biased through solutions that are sparse in the frequency domain. <br>
 
-### Closing remarks
-We now conclude our analysis of implicit bias by revising the cornerstones enounced at the beginning of the section:
-- Capacity: What's the true complexity measure? We've seen that the number of parameters is usually a poor measure of the capacity of a model because we're not taking into account the implicit regularization added to the loss.
-How does the "true" complexity measure control generalization?
-- Expressive power: The set of functions that can be represented by a neural network depends in practice on the inductive bias induced by the optimization algorithm and the architecture. 
-Does the implicit bias actually match the prior over the distribution that we're trying to infer?
-- Computation:  How and where does the optimization bias us? Under what conditions? <br>
-<br>
+
 
 ### Double descent
 Before diving deep into the topic, there's a phenomenon that is worth mentioning called [Nakkiran et al.](https://openai.com/research/deep-double-descent). <br>
@@ -162,6 +155,15 @@ neural networks, the eigenvalues of the NTK shrink monotonically as the frequenc
 increases, yielding a significantly lower convergence rate for high-frequency components of the target function.
 This indeed reveals the so-called “spectral bias” pathology of deep neural networks.
 {{<figure align=center src="images/spectral_bias.png" caption="Figure 1. The learnt function -green- overlayed on the target function -blue- as the training progresses. The target function is a superpositionvof sinusoids equal amplitudes and randomly sampled phases source: On the Spectral Bias of Neural Networks">}}
+
+### Closing remarks
+We now conclude our analysis of implicit bias by revising the cornerstones enounced at the beginning of the section:
+- Capacity: What's the true complexity measure? We've seen that the number of parameters is usually a poor measure of the capacity of a model because we're not taking into account the implicit regularization added to the loss.
+How does the "true" complexity measure control generalization?
+- Expressive power: The set of functions that can be represented by a neural network depends in practice on the inductive bias induced by the optimization algorithm and the architecture. 
+Does the implicit bias actually match the prior over the distribution that we're trying to infer?
+- Computation:  How and where does the optimization bias us? Under what conditions? <br>
+
 
 ## Weight initialization
 This is just a reminder to take a look to [weight initialization](https://www.deeplearning.ai/ai-notes/initialization/index.html).
@@ -263,7 +265,7 @@ We can now make an equivalent $f$ defined now on a group this operation is calle
 defined as:
 `$$
 f \uparrow^G(g)=f\left(g x_0\right)
-$$`.
+$$`
 As stated in the blog:<br>
 "This is a strong theorem. It says there is only one way to achieve equivariance in a neural network. This may seem counter-intuitive since there are many competing approaches to convolutions. These other approaches are actually equivalent to a convolution; just it can be hard to notice."<br>
 
@@ -272,7 +274,7 @@ We have shown that in order to make the neural network learn invariant/ equivari
 There's actually a simpler approach very much used in practice that consists in extending the dataset with some of its samples modified. Generally, it means multiplying the original sample by elements of a group or simply injecting noise in it.<br>
 
 We want to show now how data augmentation can be used to construct loss an invariant to the action of a group $G$. To make the result more explicit we suppose that the augmented dataset contains the orbits w.r.t the group of each sample. <br>
-Let $G$ be a group acting on the dataset `$\mathcal{X}$`, `$\mathcal{l}(\dot)$` a generic loss, `$\sigma(\dot)$` and activation function, $w$ the weight of the model. We suppose that `$\forall x \in \mathcal{X}$`
+Let $G$ be a group acting on the dataset `$\mathcal{X}$`, `$\mathcal{l}(\cdot)$` a generic loss, `$\sigma(\dot)$` and activation function, $w$ the weight of the model. We suppose that `$\forall x \in \mathcal{X}$`
 then there exist an augmented dataset `$\mathcal{X}'$` s.t `$g_{\theta}x \in \mathcal{X}'$` for all `$g_{\theta} \in G$`. <br>
 `$$
 \mathcal{L}(w)=\frac{1}{N} \sum_{i=1}^N \int \ell\left(\sigma\left\langle w, g_\theta x_i\right\rangle ; y_i\right) d \theta
@@ -304,7 +306,7 @@ taking the Fourier and usign the property `$\widehat{f(\cdot-t)}=e^{i k t} \hat{
 `$$
 \hat{\mathrm{f}}(k)=\left(\int_{-\infty}^{\infty} d t e^{i k t} \operatorname{Ind} d_{[-a, a]}(t)\right) \hat{f}(k)=2 a \operatorname{sinc}(2 k a) \hat{f}(k) .
 $$`
-Switching back to our original problem about the loss the above results show that if I do data augmentation the effect on the loss is to modulate the Fourier transform of some coefficient $2a sin(2ka)$, this is the implicit bias Because is biasing towards low frequencies!
+Switching back to our original problem about the loss the above results show that if I do data augmentation the effect on the loss is to modulate the Fourier transform of some coefficient `$2a sin(2ka)$`, this is the implicit bias Because is biasing towards low frequencies!
 But having a biased loss means having a biased gradient of the loss and thus the updated of weights using gradient descent are biased.<br>
 For instance, if we consider:
 `$$
@@ -335,7 +337,7 @@ That is
 `$$
 \Theta=\lambda \mathbf{I}+\gamma\left(\mathbf{1 1}^{\boldsymbol{\top}}\right) \quad \lambda, \gamma \in \mathbf{R} \quad \mathbf{1}=[1, \ldots, 1]^{\boldsymbol{\top}} \in \mathbb{R}^M
 $$`
-where `$\mathbf{I} \in \mathbb{R}^{M \times M}` is the identity matrix. <br>
+where `$\mathbf{I} \in \mathbb{R}^{M \times M}$` is the identity matrix. <br>
 
 The key concept behind the proof consists in noting that <br>
 `$$

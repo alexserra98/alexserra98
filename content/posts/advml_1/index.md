@@ -199,7 +199,8 @@ We have a good understanding of this and it's linear in the number of parameters
 
 - Computation: In the general case finding the best parameters to fit a set of data is NP-hard. Even if consider functions that are perfectly representable by a single hidden layer network, with don't add noise and we larger network for the training, still the problem doesn't admit any poly-time algorithm <br>
 
-We observe a very strange fact (add pic of test error decreasing) at some point the train error is approximately zero and the test error is still decreasing, it means that the model is improving its estimation error even if we are using a model with way more parameters this does not make any sense, it means that we have to give better definition of the complexity of the model ( not just the number of parameters) <br>
+{{<figure align=center src="images/modern_ml.png" caption="Figure 1. The test keep decreasing instead manifest sign of overfitting">}}<br>
+We observe a very strange fact at some point the train error is approximately zero and the test error is still decreasing, it means that the model is improving its estimation error even if we are using a model with way more parameters this does not make any sense, it means that we have to give better definition of the complexity of the model ( not just the number of parameters) <br>
 <br>
 
 ### Matrix Completion
@@ -390,7 +391,7 @@ corresponding to directions of less curvature. <br>
 ### Stochastic Gradient Descent
 The following are the notes from the [lecture](https://www.youtube.com/watch?v=pZnZSxOttN0) by Sam Smith and this [article](https://www.inference.vc/notes-on-the-origin-of-implicit-regularization-in-stochastic-gradient-descent/). <br>
 We start with a motivating example (add first graph in the video):
-The following performance comes from a 10-1 Wide-ResNet trained on CIFAR-10 with a constant learning rate. As we can see as the learning rate increases the train accuracy decreases but the test accuracy actually increase. Why is this happening?
+The following performance comes from a 10-1 Wide-ResNet trained on CIFAR-10 with a constant learning rate. As we can see as the learning rate increases the train accuracy decreases but the test accuracy actually increase. Why is this happening? <br>
 **Key Claim**: The SGD is  minimizing a modified loss in which there's a regularization term that is proportional to the learning rate.<br>
 The first step now is to explicit the relationship between optimization and Numerical Integration. It's well known that gradient descent in the limit of infinitesimal step size is equivalent to a gradient flow problem:
 `$$
@@ -408,7 +409,7 @@ But following this interpretation we can see that the gradient descent is actual
 \dot{\omega}=f(\omega)
 \end{gathered}
 $$`
-{{<figure align=center src="images/step_off.png" caption="Figure 1. Discrete update on the original flow stepping of modified flow source:https://www.youtube.com/watch?v=pZnZSxOttN0">}}<br>
+{{<figure align=center src="images/step_off.png" caption="Figure 2. Discrete update on the original flow stepping of modified flow source:https://www.youtube.com/watch?v=pZnZSxOttN0">}}<br>
 <br>
 If we follow the steps of Euler update we can see that this approximation scheme introduces a bias at each step and soon the trajectory of the discrete updates will step off from the actual solution.
 <br> 
@@ -598,19 +599,19 @@ and set the stochasticity,  `$\alpha$` set the discretization error cause it enc
 ADD PLOT
 (not very clear!! revise)
 --->
-what we see now is that Lare bare learning rates \alpha are actually beneficial for the optimization procedure, implying that **discretization error** is beneficial, whilist smaller value of n achieves higher accuracy implying that **stochasticity is detrimental**<br>
+{{<figure align=center src="images/alpha.png" caption="Figure 3. Training a 16-4 Wide-Res net for 400 epochs">}}
+
+what we see now is that Large bare learning rates  `$\alpha$` are actually beneficial for the optimization procedure, implying that **discretization error** is beneficial, whilist smaller value of n achieves higher accuracy implying that **stochasticity is detrimental**<br>
 <br>
 ### Closing Remarks on gradient descent
 
 The goal of an optimization algorithm is to converge to **good** minima that behaves well in terms of:
 - robustness
 - generalization
-{{<figure align=center src="images/robust-sgd0.png" caption="Figure 2. Flat minimum is more stable to perturbations">}}<br>
 Both the train-set and test-set are sampled from the same distribution, and for this reason, we expect the train loss function to be very close to the test loss function. What we want is to find a shape of the loss that is robust to small perturbations (that comes from training different samples but from the same distribution). There's an ongoing debate regarding the geometry of these shapes, but a generally accepted idea is that a function with a *flat* minima can provide robustness and generalization.  <br>
 
-{{<figure align=center src="images/robust-sgd.png" caption="Figure 3. At each step the SGD is looking to a different sampled function. On average the main effect is dominated by big basins of attraction">}}<br>
-<br>
-<br>
+{{<figure align=center src="images/robust-sgd.png" caption="Figure 4. At each step the SGD is looking to a different sampled function. On average the main effect is dominated by big basins of attraction">}}
+
 <!---
 (Not sure rewatch march 22 29.45 Langevin SGD
 It didn't talk about this but if I have time I want to add a few remarks about it. <br>)
