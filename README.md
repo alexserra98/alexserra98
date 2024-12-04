@@ -1,7 +1,9 @@
 ### <div align="center"><👋 Hello World! I'm Alex></div>  
   
 
-- Master student of Data Science and Artificial Intelligence @ University of Trieste  
+-  Phd Student @SISSA @RitAreaSciencePark | Theoretical Data Science and Scientific Computing 
+
+
   
 
 <br/>  
